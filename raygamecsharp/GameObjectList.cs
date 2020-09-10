@@ -2,6 +2,7 @@
 using Raylib_cs;
 using static Raylib_cs.Raylib;
 using System.Numerics;
+using raygamecsharp.Pong;
 
 namespace RGCore
 {
@@ -17,6 +18,20 @@ namespace RGCore
 
         public static List<List<GameObject>> scenes = new List<List<GameObject>>
         {
+            new List<GameObject>//Pong
+            {
+
+                new BackBoard("WallLeft", new Vector2(0,450),new Vector2(40,900),1),
+                new BackBoard("WallRight", new Vector2(1600,450),new Vector2(40,900),2),
+                new CollisionTestRectangle("Wall", new Vector2(800,0),new Vector2(1600,40)),
+                new CollisionTestRectangle("Wall", new Vector2(800,900),new Vector2(1600,40)),
+                new Ball("Ball",new Vector2(800,450)),
+                new Paddle("Player1",new Vector2(100,450),1),
+                new Paddle("Player2",new Vector2(1500,450),2),
+                new ScoreCounter("Score2",new Vector2(30,30),1),
+                new ScoreCounter("Score1",new Vector2(1510,30),2),
+
+            },
             new List<GameObject>
             {
                 new CollisionTestRectangle("Platform", new Vector2(800,850),new Vector2(1600,40)),
@@ -35,14 +50,7 @@ namespace RGCore
                 new CollisionTestRectangle("Wall", new Vector2(800,880),new Vector2(1600,40)),
             },
 
-            new List<GameObject>
-            {
-                new CollisionTestRectangle("Wall", new Vector2(600,150),new Vector2(40,340)),
-                new CollisionTestRectangle("Wall", new Vector2(0,450),new Vector2(40,900)),
-                new CollisionTestRectangle("Wall", new Vector2(1600,450),new Vector2(40,900)),
-                new CollisionTestRectangle("Wall", new Vector2(800,0),new Vector2(1600,40)),
-                new CollisionTestRectangle("Wall", new Vector2(800,880),new Vector2(1600,40)),
-            }
+            
         };
 
 
@@ -53,6 +61,7 @@ namespace RGCore
             {
                 objects.Add(scenes[sceneID][i].DeepClone());
             }
+            core_basic_window.Start();
         }
 
 

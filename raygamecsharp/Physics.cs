@@ -7,6 +7,8 @@ using static RGCore.GameObjectList;
 
 namespace RGCore.RGPhysics
 {
+
+    //This system has many issues
     class Physics
     {
         //keeps track of all collisions
@@ -21,7 +23,7 @@ namespace RGCore.RGPhysics
                 {
                     
                     Collider c = g.collider;
-                    c.lastPos = new Vector2(c.gameObject.transform.translation.X,c.gameObject.transform.translation.Y);
+                    c.lastPos = new Vector2(c.gameObject.transform.translation.X, c.gameObject.transform.translation.Y);
                     if (c.IsKinematic)
                     {
                         if (c.AutoClean && c.gameObject.transform.translation.Y > 3000) //destroy "AutoClean" objects that fall out of the world.
@@ -35,6 +37,7 @@ namespace RGCore.RGPhysics
                             c.Velocity += new Vector2(0, gravity);
                         }
                     }
+                    
                 }
             }
             //Run collision checks
@@ -74,7 +77,7 @@ namespace RGCore.RGPhysics
                     {
                         foreach (Collision collision in collisions) 
                         {
-                            if (!collision.finished) {
+                            if (!collision.finished && collision.entered) {
                                 if (collision.Includes(c))
                                 {
                                     Vector2 c2Pos = collision.collider2.GetClosestMidpoint(new Vector2(collision.collider1.gameObject.transform.translation.X,collision.collider1.gameObject.transform.translation.Y));
@@ -93,9 +96,10 @@ namespace RGCore.RGPhysics
                                         float edgeDownDist = (edgeDown - c2Pos.Y) * -1;
                                         float edgeUpDist = edgeUp - c2Pos.Y;
 
+
                                         //find the shortest distance from an edge to the center of collider1
                                         float inToMid = (((RectangleCollider)collision.collider1).scale.Y / 2) * -1;
-                                        if ((((RectangleCollider)collision.collider1).scale.X / 2) >= inToMid)
+                                        if ((((RectangleCollider)collision.collider1).scale.X / 2) <= inToMid)
                                         {
                                             inToMid = (((RectangleCollider)collision.collider1).scale.X / 2) * -1;
                                         }
@@ -118,6 +122,7 @@ namespace RGCore.RGPhysics
                                         {
                                             direction = "Right";
                                         }
+
                                     }
                                     else 
                                     {
@@ -130,6 +135,8 @@ namespace RGCore.RGPhysics
                                     {
                                         bounce = collision.collider2.Bounce;
                                     }
+
+                                    
 
 
                                     if (collision.collider1.IsKinematic && !collision.collider2.IsKinematic)//move collider1 out of collider2
@@ -195,7 +202,7 @@ namespace RGCore.RGPhysics
                                                 if (collision.collider2.ColliderType == "Rectangle" && collision.collider1.ColliderType == "Rectangle")
                                                 {
                                                     collision.collider2.gameObject.transform.translation.X = collision.collider1.gameObject.transform.translation.X - ((((RectangleCollider)collision.collider1).scale.X / 2) + (((RectangleCollider)collision.collider2).scale.X / 2));
-                                                    if (collision.collider1.Velocity.X <= 0)
+                                                    if (collision.collider2.Velocity.X >= 0)
                                                         collision.collider2.Velocity = new Vector2(-collision.collider2.Velocity.X * bounce, collision.collider2.Velocity.Y);
                                                 }
                                                 break;
@@ -203,7 +210,7 @@ namespace RGCore.RGPhysics
                                                 if (collision.collider2.ColliderType == "Rectangle" && collision.collider1.ColliderType == "Rectangle")
                                                 {
                                                     collision.collider2.gameObject.transform.translation.X = collision.collider1.gameObject.transform.translation.X + ((((RectangleCollider)collision.collider1).scale.X / 2) + (((RectangleCollider)collision.collider2).scale.X / 2));
-                                                    if (collision.collider1.Velocity.X >= 0)
+                                                    if (collision.collider2.Velocity.X <= 0)
                                                         collision.collider2.Velocity = new Vector2(-collision.collider2.Velocity.X * bounce, collision.collider2.Velocity.Y);
                                                 }
                                                 break;

@@ -26,6 +26,7 @@ using static Raylib_cs.Color;
 using static RGCore.GameObjectList;
 using System.Numerics;
 using RGCore.RGPhysics;
+using System;
 
 namespace RGCore
 {
@@ -86,7 +87,7 @@ namespace RGCore
 
         public static void Draw() 
         {
-            ClearBackground(RAYWHITE);
+            ClearBackground(BLACK);
             //Draws all GameObjects
             foreach (GameObject g in objects)
             {
@@ -125,7 +126,7 @@ namespace RGCore
             LoadTextures();
             LoadSounds();
             LoadScene(0);
-            Start();
+            //Start();
             // Main game loop
             while (!WindowShouldClose())    // Detect window close button or ESC key
             {

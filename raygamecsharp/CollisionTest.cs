@@ -8,7 +8,7 @@ namespace RGCore
 {
     class CollisionTestRectangle : GameObject
     {
-        Color color = RED;
+        Color color = WHITE;
         public CollisionTestRectangle(string name, Vector2 pos) : base(name, pos)
         {
             transform.scale = new Vector3(40, 40, 0);
@@ -30,7 +30,6 @@ namespace RGCore
             collider.IsKinematic = false;
             collider.IsStatic = true;
             collider.EnableGravity = true;
-            collider.Velocity = new Vector2(100, -500);
             collider.AutoClean = true;
             ((RectangleCollider)collider).scale = new Vector2(transform.scale.X, transform.scale.Y);
             base.Start();
@@ -38,10 +37,6 @@ namespace RGCore
 
         public override void Update()
         {
-            if (IsMouseButtonPressed(MouseButton.MOUSE_LEFT_BUTTON) && GetRandomValue(0,2) == 1) 
-            {
-                color = GREEN;
-            }
         }
 
         public override void Draw()

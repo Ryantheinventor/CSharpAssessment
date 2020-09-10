@@ -76,7 +76,6 @@ namespace RGCore
 
             Rectangle rec = new Rectangle(transform.translation.X - transform.scale.X / 2, transform.translation.Y - transform.scale.Y / 2, transform.scale.X, transform.scale.Y);
             DrawTexturePro(texture, frames[frame], rec, new Vector2(0,0),transform.rotation.Z,color);
-            //DrawTextureV(texture, new Vector2(transform.translation.X - transform.scale.X / 2, transform.translation.Y - transform.scale.Y / 2), color);
         }
 
     }
