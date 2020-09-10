@@ -1,0 +1,106 @@
+﻿using Raylib_cs;
+using static Raylib_cs.Raylib;
+using static Raylib_cs.Color;
+using System.Numerics;
+using RGCore.RGPhysics;
+
+namespace RGCore
+{
+    class CollisionTestRectangle : GameObject
+    {
+        Color color = RED;
+        public CollisionTestRectangle(string name, Vector2 pos) : base(name, pos)
+        {
+            transform.scale = new Vector3(40, 40, 0);
+        }
+        public CollisionTestRectangle(string name, Vector2 pos, Vector2 scale) : base(name, pos)
+        {
+            transform.scale = new Vector3(scale, 0);
+        }
+
+        public override GameObject DeepClone()
+        {
+            GameObject clone = base.DeepClone();
+            return clone;
+        }
+
+        public override void Start()
+        {
+            collider = new RectangleCollider();
+            collider.IsKinematic = false;
+            collider.IsStatic = true;
+            collider.EnableGravity = true;
+            collider.Velocity = new Vector2(100, -500);
+            collider.AutoClean = true;
+            ((RectangleCollider)collider).scale = new Vector2(transform.scale.X, transform.scale.Y);
+            base.Start();
+        }
+
+        public override void Update()
+        {
+            if (IsMouseButtonPressed(MouseButton.MOUSE_LEFT_BUTTON) && GetRandomValue(0,2) == 1) 
+            {
+                color = GREEN;
+            }
+        }
+
+        public override void Draw()
+        {
+            base.Draw();
+            DrawRectangle((int)transform.translation.X - (int)(transform.scale.X / 2), (int)transform.translation.Y - (int)(transform.scale.Y / 2), (int)transform.scale.X, (int)transform.scale.Y, color);
+
+        }
+
+        public override void OnCollisionStay(Collider other)
+        {
+            //color = GREEN;
+        }
+
+        public override void OnCollisionExit(Collider other)
+        {
+            //color = RED;
+            
+        }
+    }
+    class CollisionTestCircle : GameObject
+    {
+        Color color = RED;
+        public CollisionTestCircle(string name, Vector2 pos) : base(name, pos)
+        {
+
+        }
+
+        public override void Start()
+        {
+            transform.scale = new Vector3(40, 40, 0);
+            collider = new CircleCollider();
+            collider.IsStatic = true;
+            ((CircleCollider)collider).radius = 20;
+            base.Start();
+
+        }
+
+        public override void Update()
+        {
+
+        }
+
+        public override void Draw()
+        {
+            base.Draw();
+            
+            DrawCircle((int)transform.translation.X, (int)transform.translation.Y, 20, color);
+        }
+
+        public override void OnCollisionStay(Collider other)
+        {
+            color = GREEN;
+            
+        }
+
+        public override void OnCollisionExit(Collider other)
+        {
+            color = RED;
+        }
+    }
+}
