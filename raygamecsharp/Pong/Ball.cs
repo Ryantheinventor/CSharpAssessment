@@ -10,6 +10,8 @@ namespace raygamecsharp.Pong
 {
     class Ball : GameObject
     {
+        private float waitTime = 1.5f;
+        private float timeSinceReset = 1.5f;
         public bool HasStarted = false;
         public float Speed = 1000f;
         public Ball(string name, Vector2 pos) : base(name,pos)
@@ -35,13 +37,18 @@ namespace raygamecsharp.Pong
             {
                 Reset();
                 HasStarted = true;
+                timeSinceReset = waitTime;
+            }
+            if (timeSinceReset < waitTime) 
+            {
+                timeSinceReset += GetFrameTime();
             }
         }
 
         public void Reset() 
         {
             Random random = new Random();
-            float xValue = (float)(random.Next(75, 91)) / 100f;
+            float xValue = random.Next(75, 85) / 100f;
             float yValue = MathF.Sqrt(1f - xValue);
             if (random.Next(0, 2) == 0)
             {
@@ -53,6 +60,15 @@ namespace raygamecsharp.Pong
             }
             transform.translation = new Vector3(800,450,0);
             collider.Velocity = new Vector2(xValue*Speed, yValue*Speed);
+            timeSinceReset = 0;
+        }
+
+        public override void PhysicsUpdate()
+        {
+            if (timeSinceReset < waitTime) 
+            {
+                transform.translation = new Vector3(800, 450, 0);
+            }
         }
 
         public override void Draw()

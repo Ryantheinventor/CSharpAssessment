@@ -18,6 +18,10 @@ namespace RGCore
 
         public static List<List<GameObject>> scenes = new List<List<GameObject>>
         {
+            new List<GameObject>//Main Menu
+            {
+                new LoadSceneButton("StartPong",new Vector2(800,225),"PongButton",1)
+            },
             new List<GameObject>//Pong
             {
 
@@ -30,25 +34,10 @@ namespace RGCore
                 new Paddle("Player2",new Vector2(1500,450),2),
                 new ScoreCounter("Score2",new Vector2(30,30),1),
                 new ScoreCounter("Score1",new Vector2(1510,30),2),
+                new LoadSceneButton("ExitButton",new Vector2(800,75),"Exit",0),
 
             },
-            new List<GameObject>
-            {
-                new CollisionTestRectangle("Platform", new Vector2(800,850),new Vector2(1600,40)),
-                new CollisionTestRectangle("Platform", new Vector2(1400,650),new Vector2(400,40)),
-                new CollisionTestRectangle("Platform", new Vector2(200,700),new Vector2(400,40)),
-                new CollisionTestRectangle("Platform", new Vector2(800,550),new Vector2(400,40)),
-                new CollisionTestRectangle("Platform", new Vector2(200,450),new Vector2(400,40)),
-                new CollisionTestRectangle("Platform", new Vector2(200,230),new Vector2(400,40)),
-                new CollisionTestRectangle("Platform", new Vector2(800,110),new Vector2(400,40)),
-                new CollisionTestRectangle("Platform", new Vector2(800,300),new Vector2(400,40)),
-                new CollisionTestRectangle("Platform", new Vector2(1400,300),new Vector2(400,40)),
-                new CollisionTestRectangle("Wall", new Vector2(600,150),new Vector2(40,340)),
-                new CollisionTestRectangle("Wall", new Vector2(0,450),new Vector2(40,900)),
-                new CollisionTestRectangle("Wall", new Vector2(1600,450),new Vector2(40,900)),
-                new CollisionTestRectangle("Wall", new Vector2(800,0),new Vector2(1600,40)),
-                new CollisionTestRectangle("Wall", new Vector2(800,880),new Vector2(1600,40)),
-            },
+            
 
             
         };
@@ -90,8 +79,9 @@ namespace RGCore
         /// </summary>
         public static void LoadTextures() 
         {
-            //textures.Add("TestImage", LoadTexture(@"Textures\TestImage.png"));
-            
+            textures.Add("Exit", LoadTexture(@"Textures\Exit.png"));
+            textures.Add("PongButton", LoadTexture(@"Textures\PongButton.png"));
+
         }
         /// <summary>
         /// Loads all sounds to be used into the sound list.

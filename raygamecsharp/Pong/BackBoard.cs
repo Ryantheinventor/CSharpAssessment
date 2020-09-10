@@ -31,6 +31,10 @@ namespace raygamecsharp.Pong
                     {
                         ((ScoreCounter)g).score++;
                     }
+                    if (g.name.StartsWith("Player")) 
+                    {
+                        g.transform.translation.Y = 450;
+                    }
                 }
                 ((Ball)other.gameObject).Reset();
                 
