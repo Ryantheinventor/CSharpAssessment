@@ -19,8 +19,6 @@ namespace RGCore
             transform.translation = new Vector3(pos,0);
         }
 
-        
-
         public virtual GameObject DeepClone() 
         {
             GameObject clone = (GameObject) MemberwiseClone();

@@ -36,7 +36,7 @@ namespace raygamecsharp.Pong
                         g.transform.translation.Y = 450;
                     }
                 }
-                ((Ball)other.gameObject).Reset();
+                ((PongBall)other.gameObject).Reset();
                 
             }
         }

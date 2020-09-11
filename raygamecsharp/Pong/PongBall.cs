@@ -2,19 +2,20 @@
 using Raylib_cs;
 using static Raylib_cs.Raylib;
 using static Raylib_cs.Color;
+
 using System.Numerics;
 using RGCore.RGPhysics;
 using System;
 
 namespace raygamecsharp.Pong
 {
-    class Ball : GameObject
+    class PongBall : GameObject
     {
         private float waitTime = 1.5f;
         private float timeSinceReset = 1.5f;
         public bool HasStarted = false;
         public float Speed = 1000f;
-        public Ball(string name, Vector2 pos) : base(name,pos)
+        public PongBall(string name, Vector2 pos) : base(name,pos)
         {
             transform.scale = new Vector3(40, 40, 0);
         }
@@ -76,6 +77,8 @@ namespace raygamecsharp.Pong
             base.Draw();
             DrawCircle((int)transform.translation.X, (int)transform.translation.Y, transform.scale.X / 2, WHITE);
         }
+
+        
 
     }
 }

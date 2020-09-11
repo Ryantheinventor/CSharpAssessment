@@ -24,14 +24,18 @@ using Raylib_cs;
 using static Raylib_cs.Raylib;
 using static Raylib_cs.Color;
 using static RGCore.GameObjectList;
+using static RGCore.ScoreSaver;
 using System.Numerics;
 using RGCore.RGPhysics;
 using System;
+using raygamecsharp;
 
 namespace RGCore
 {
-    public class core_basic_window
+    public class Core_basic_window
     {
+        public static string LastGame = "";
+        public static ScoreData savedScores;
         static Vector2 cameraPos = new Vector2(0,0);
         public static bool showDebug1 = false;
         public static bool showDebug2 = false;
@@ -62,7 +66,11 @@ namespace RGCore
             }
             if (IsKeyPressed(KeyboardKey.KEY_TWO))
             {
-                LoadScene(1);
+                LoadScene(2);
+            }
+            if (IsKeyPressed(KeyboardKey.KEY_THREE))
+            {
+                LoadScene(3);
             }
 
             //Run all update functions
@@ -125,6 +133,7 @@ namespace RGCore
             SetTargetFPS(60);
             LoadTextures();
             LoadSounds();
+            LoadScores();
             LoadScene(0);
             //Start();
             // Main game loop
@@ -135,7 +144,7 @@ namespace RGCore
                 Draw();
                 EndDrawing();
             }
-
+            SaveScores();
             // De-Initialization
             //--------------------------------------------------------------------------------------
             CloseWindow();        // Close window and OpenGL context

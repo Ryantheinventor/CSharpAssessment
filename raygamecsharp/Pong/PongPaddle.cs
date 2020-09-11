@@ -8,11 +8,11 @@ using System;
 
 namespace raygamecsharp.Pong
 {
-    class Paddle : GameObject
+    class PongPaddle : GameObject
     {
         int player = 1;
         public int speed = 700;
-        public Paddle(string name, Vector2 pos, int player) : base(name, pos)
+        public PongPaddle(string name, Vector2 pos, int player) : base(name, pos)
         {
             this.player = player;
             transform.scale = new Vector3(40, 120, 0);

@@ -3,6 +3,8 @@ using Raylib_cs;
 using static Raylib_cs.Raylib;
 using System.Numerics;
 using raygamecsharp.Pong;
+using raygamecsharp.Breakout;
+using raygamecsharp.Textures;
 
 namespace RGCore
 {
@@ -20,8 +22,14 @@ namespace RGCore
         {
             new List<GameObject>//Main Menu
             {
-                new LoadSceneButton("StartPong",new Vector2(800,225),"PongButton",1)
+                new LoadSceneButton("StartPong",new Vector2(800,225),"PongButton",2)
             },
+            new List<GameObject>//Game Over
+            {
+                new LoadSceneButton("ExitButton",new Vector2(800,75),"Exit",0),
+                new EnterName("EnterName",new Vector2(10,10)),
+            },
+
             new List<GameObject>//Pong
             {
 
@@ -29,17 +37,29 @@ namespace RGCore
                 new BackBoard("WallRight", new Vector2(1600,450),new Vector2(40,900),2),
                 new CollisionTestRectangle("Wall", new Vector2(800,0),new Vector2(1600,40)),
                 new CollisionTestRectangle("Wall", new Vector2(800,900),new Vector2(1600,40)),
-                new Ball("Ball",new Vector2(800,450)),
-                new Paddle("Player1",new Vector2(100,450),1),
-                new Paddle("Player2",new Vector2(1500,450),2),
+                new PongBall("Ball",new Vector2(800,450)),
+                new PongPaddle("Player1",new Vector2(100,450),1),
+                new PongPaddle("Player2",new Vector2(1500,450),2),
                 new ScoreCounter("Score2",new Vector2(30,30),1),
                 new ScoreCounter("Score1",new Vector2(1510,30),2),
                 new LoadSceneButton("ExitButton",new Vector2(800,75),"Exit",0),
 
             },
-            
+            new List<GameObject>//Breakout
+            {
 
-            
+                new CollisionTestRectangle("Wall", new Vector2(500,450),new Vector2(40,900)),
+                new CollisionTestRectangle("Wall", new Vector2(1100,450),new Vector2(40,900)),
+                new CollisionTestRectangle("Wall", new Vector2(800,0),new Vector2(600,40)),
+                new CollisionTestRectangle("Floor", new Vector2(800,900),new Vector2(600,40)),
+                new BreakoutPaddle("Player",new Vector2(800,850)),
+                new BreakoutBall("Ball",new Vector2(800,850)),
+                new BreakoutScore("Score",new Vector2(20,20)),
+                //new LoadSceneButton("ExitButton",new Vector2(800,75),"Exit",0),
+            },
+
+
+
         };
 
 
@@ -50,7 +70,9 @@ namespace RGCore
             {
                 objects.Add(scenes[sceneID][i].DeepClone());
             }
-            core_basic_window.Start();
+            Queue = new List<GameObject>();
+            Marked = new List<GameObject>();
+            Core_basic_window.Start();
         }
 
 
@@ -137,6 +159,18 @@ namespace RGCore
             }
 
             return output;
+        }
+
+        public static GameObject FindByName(string name) 
+        {
+            foreach (GameObject g in objects) 
+            {
+                if (g.name == name) 
+                {
+                    return g;
+                }
+            }
+            return null;
         }
 
     }
