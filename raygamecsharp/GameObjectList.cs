@@ -1,10 +1,12 @@
 ﻿using System.Collections.Generic;
 using Raylib_cs;
 using static Raylib_cs.Raylib;
+using static Raylib_cs.Color;
 using System.Numerics;
-using raygamecsharp.Pong;
-using raygamecsharp.Breakout;
-using raygamecsharp.Textures;
+using MiniAtariArcade.Pong;
+using MiniAtariArcade.Breakout;
+using MiniAtariArcade;
+using MiniAtariArcade.Asteroids;
 
 namespace RGCore
 {
@@ -20,17 +22,20 @@ namespace RGCore
 
         public static List<List<GameObject>> scenes = new List<List<GameObject>>
         {
-            new List<GameObject>//Main Menu
+            new List<GameObject>//Main Menu 0
             {
-                new LoadSceneButton("StartPong",new Vector2(800,225),"PongButton",2)
+                new Text("Title",new Vector2(250,100),"Mini Atari\nArcade",80,WHITE),
+                new LoadSceneButton("StartPong",new Vector2(1100,225),"PongButton",2),
+                new SceneButtonScore("StartBreakout",new Vector2(500,650),"BreakoutButton",3,"Breakout"),
+                new SceneButtonScore("StartAsteroids",new Vector2(1100,650),"AsteroidsButton",4,"Asteroids"),
             },
-            new List<GameObject>//Game Over
+            new List<GameObject>//Game Over 1
             {
-                new LoadSceneButton("ExitButton",new Vector2(800,75),"Exit",0),
-                new EnterName("EnterName",new Vector2(10,10)),
+                new Text("Instructions",new Vector2(600,100),"Type a name.",60,WHITE),
+                new EnterName("EnterName",new Vector2(680,300)),
             },
 
-            new List<GameObject>//Pong
+            new List<GameObject>//Pong 2
             {
 
                 new BackBoard("WallLeft", new Vector2(0,450),new Vector2(40,900),1),
@@ -45,7 +50,7 @@ namespace RGCore
                 new LoadSceneButton("ExitButton",new Vector2(800,75),"Exit",0),
 
             },
-            new List<GameObject>//Breakout
+            new List<GameObject>//Breakout 3
             {
 
                 new CollisionTestRectangle("Wall", new Vector2(500,450),new Vector2(40,900)),
@@ -54,8 +59,14 @@ namespace RGCore
                 new CollisionTestRectangle("Floor", new Vector2(800,900),new Vector2(600,40)),
                 new BreakoutPaddle("Player",new Vector2(800,850)),
                 new BreakoutBall("Ball",new Vector2(800,850)),
-                new BreakoutScore("Score",new Vector2(20,20)),
+                new BreakoutScore("Score",new Vector2(20,30)),
                 //new LoadSceneButton("ExitButton",new Vector2(800,75),"Exit",0),
+            },
+            new List<GameObject>//Asteroids 4
+            {
+                new AsteroidsShip("Player",new Vector2(800,450),"Ship"),
+                new AsteroidSpawner("Spawner",new Vector2(0,0)),
+                new AsteroidsScore("Score",new Vector2(1000,20)),
             },
 
 
@@ -103,7 +114,13 @@ namespace RGCore
         {
             textures.Add("Exit", LoadTexture(@"Textures\Exit.png"));
             textures.Add("PongButton", LoadTexture(@"Textures\PongButton.png"));
-
+            textures.Add("Ship", LoadTexture(@"Textures\Ship.png"));
+            textures.Add("AsteroidSml0", LoadTexture(@"Textures\AsteroidSml0.png"));
+            textures.Add("AsteroidMed0", LoadTexture(@"Textures\AsteroidMed0.png"));
+            textures.Add("AsteroidBig0", LoadTexture(@"Textures\AsteroidBig0.png"));
+            textures.Add("BreakoutButton", LoadTexture(@"Textures\BreakoutButton.png"));
+            textures.Add("AsteroidsButton", LoadTexture(@"Textures\AsteroidsButton.png"));
+            
         }
         /// <summary>
         /// Loads all sounds to be used into the sound list.

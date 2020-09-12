@@ -7,11 +7,10 @@ using static RGCore.Core_basic_window;
 using System.Runtime.Serialization.Formatters.Binary;
 using System.Runtime.Serialization;
 
-namespace RGCore
+namespace MiniAtariArcade
 {
     class ScoreSaver
     {
-
         public static void LoadScores() 
         {
             FileStream fs = new FileStream("SavedScores.dat", FileMode.OpenOrCreate);

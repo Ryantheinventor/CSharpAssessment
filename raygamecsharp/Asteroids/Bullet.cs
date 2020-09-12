@@ -7,34 +7,32 @@ using System.Numerics;
 using RGCore.RGPhysics;
 using System;
 
-namespace MiniAtariArcade.Breakout
+namespace MiniAtariArcade.Asteroids
 {
-    class Block : GameObject
+    class Bullet : GameObject
     {
-        BreakoutScore scoreTracker;
-        public Block(string name, Vector2 pos) : base(name, pos)
+        public Bullet(string name, Vector2 pos) : base(name, pos)
         {
-            transform.scale = new Vector3(40, 20, 0);
+            transform.scale = new Vector3(5, 5, 0);
+
         }
 
 
         public override void Start()
         {
             collider = new RectangleCollider();
-            collider.IsStatic = true;
             ((RectangleCollider)collider).scale = new Vector2(transform.scale.X, transform.scale.Y);
             base.Start();
-            scoreTracker = (BreakoutScore)FindByName("Score");
         }
 
-        public override void OnCollisionStay(Collider other)
+        public override void PhysicsUpdate()
         {
-            if (other.gameObject.name == "Ball") 
+            transform.translation += new Vector3(collider.Velocity, 0) * GetFrameTime();
+
+            if (transform.translation.X > 1650 || transform.translation.X < -50 || transform.translation.Y > 950 || transform.translation.Y < -50)
             {
-                scoreTracker.AddPoints();
                 Destroy(this);
             }
-            
         }
 
         public override void Draw()
@@ -42,5 +40,6 @@ namespace MiniAtariArcade.Breakout
             base.Draw();
             DrawRectangle((int)(transform.translation.X - transform.scale.X / 2), (int)(transform.translation.Y - transform.scale.Y / 2), (int)transform.scale.X, (int)transform.scale.Y, WHITE);
         }
+
     }
 }

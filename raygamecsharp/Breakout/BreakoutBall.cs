@@ -8,13 +8,14 @@ using static RGCore.GameObjectList;
 using static RGCore.Core_basic_window;
 using System;
 
-namespace raygamecsharp.Breakout
+namespace MiniAtariArcade.Breakout
 {
     class BreakoutBall : GameObject
     {
         public bool HasStarted = false;
         public float Speed = 500f;
         BreakoutPaddle player;
+        BreakoutScore score;
         public BreakoutBall(string name, Vector2 pos) : base(name, pos)
         {
             transform.scale = new Vector3(20, 20, 0);
@@ -29,6 +30,7 @@ namespace raygamecsharp.Breakout
             ((RectangleCollider)collider).scale = new Vector2(transform.scale.X, transform.scale.Y);
             base.Start();
             player = (BreakoutPaddle)FindByName("Player");
+            score = (BreakoutScore)FindByName("Score");
         }
 
         public override void Update()
@@ -61,8 +63,17 @@ namespace raygamecsharp.Breakout
         {
             if (other.gameObject.name == "Floor")
             {
-                LastGame = "Breakout";
-                LoadScene(1);
+                if (savedScores.BreakoutScore < score.score)
+                {
+                    LastGame = "Breakout";
+                    LastScore = score.score;
+                    LoadScene(1);
+                }
+                else 
+                {
+                    LoadScene(0);
+                }
+                
             }
         }
 
@@ -70,6 +81,25 @@ namespace raygamecsharp.Breakout
         {
             base.Draw();
             DrawCircle((int)transform.translation.X, (int)transform.translation.Y, transform.scale.X / 2, WHITE);
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
         }
     }
 }

@@ -9,11 +9,11 @@ using static RGCore.Core_basic_window;
 using System;
 using System.Collections.Generic;
 
-namespace raygamecsharp.Textures
+namespace MiniAtariArcade
 {
     class EnterName : GameObject
     {
-        string name = "aaa";
+        string playerName = "AAA";
         public EnterName(string name, Vector2 pos) : base(name, pos)
         {
             transform.scale = new Vector3(20, 20, 0);
@@ -22,16 +22,40 @@ namespace raygamecsharp.Textures
         public override void Start()
         {
             base.Start();
-            
         }
+
         //a-z = 97-122
         public override void Update()
         {
             int key = GetKeyPressed();
             if (key >= 97 && key <= 122) 
-            { 
-                
+            {
+                string input = "" + (char)key;
+                playerName = (playerName.Substring(1) + input).ToUpper();
+                Console.WriteLine(playerName);
             }
+            if (IsKeyPressed(KeyboardKey.KEY_ENTER)) 
+            {
+                if (LastGame == "Breakout") 
+                {
+                    savedScores.BreakoutName = playerName;
+                    savedScores.BreakoutScore = LastScore;
+                }
+                if (LastGame == "Asteroids")
+                {
+                    savedScores.AsteroidsName = playerName;
+                    savedScores.AsteroidsScore = LastScore;
+                }
+
+                LoadScene(0);
+            }
+
+        }
+
+        public override void Draw()
+        {
+            base.Draw();
+            DrawText(playerName, (int)transform.translation.X, (int)transform.translation.Y, 150, WHITE);
         }
 
     }

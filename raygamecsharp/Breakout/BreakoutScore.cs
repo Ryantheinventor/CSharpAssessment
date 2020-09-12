@@ -7,7 +7,7 @@ using System.Numerics;
 using RGCore.RGPhysics;
 using System;
 
-namespace raygamecsharp.Breakout
+namespace MiniAtariArcade.Breakout
 {
     class BreakoutScore : GameObject
     {

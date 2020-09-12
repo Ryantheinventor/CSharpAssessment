@@ -74,8 +74,8 @@ namespace RGCore
             }
             curFrameTime += GetFrameTime();
 
-            Rectangle rec = new Rectangle(transform.translation.X - transform.scale.X / 2, transform.translation.Y - transform.scale.Y / 2, transform.scale.X, transform.scale.Y);
-            DrawTexturePro(texture, frames[frame], rec, new Vector2(0,0),transform.rotation.Z,color);
+            Rectangle rec = new Rectangle(transform.translation.X, transform.translation.Y, transform.scale.X, transform.scale.Y);
+            DrawTexturePro(texture, frames[frame], rec, new Vector2(transform.scale.X / 2, transform.scale.Y / 2),transform.rotation.Z,color);
         }
 
     }

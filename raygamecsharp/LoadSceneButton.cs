@@ -6,7 +6,7 @@ using static RGCore.GameObjectList;
 using System.Numerics;
 using System;
 
-namespace raygamecsharp.Pong
+namespace MiniAtariArcade
 {
     class LoadSceneButton : Sprite
     {
@@ -23,6 +23,7 @@ namespace raygamecsharp.Pong
         {
             SetSprite(textures[textureName], 1, 1);
             transform.scale = new Vector3(texture.width, texture.height, 0);
+            base.Start();
         }
 
         public override void Update()

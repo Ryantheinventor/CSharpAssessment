@@ -24,17 +24,19 @@ using Raylib_cs;
 using static Raylib_cs.Raylib;
 using static Raylib_cs.Color;
 using static RGCore.GameObjectList;
-using static RGCore.ScoreSaver;
+using static MiniAtariArcade.ScoreSaver;
 using System.Numerics;
 using RGCore.RGPhysics;
 using System;
-using raygamecsharp;
+using MiniAtariArcade;
+using System.Collections.Generic;
 
 namespace RGCore
 {
     public class Core_basic_window
     {
         public static string LastGame = "";
+        public static int LastScore = 0;
         public static ScoreData savedScores;
         static Vector2 cameraPos = new Vector2(0,0);
         public static bool showDebug1 = false;
@@ -71,6 +73,10 @@ namespace RGCore
             if (IsKeyPressed(KeyboardKey.KEY_THREE))
             {
                 LoadScene(3);
+            }
+            if (IsKeyPressed(KeyboardKey.KEY_FOUR))
+            {
+                LoadScene(4);
             }
 
             //Run all update functions
@@ -135,6 +141,10 @@ namespace RGCore
             LoadSounds();
             LoadScores();
             LoadScene(0);
+
+
+            
+
             //Start();
             // Main game loop
             while (!WindowShouldClose())    // Detect window close button or ESC key

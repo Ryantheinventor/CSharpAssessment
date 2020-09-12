@@ -7,7 +7,7 @@ using System.Numerics;
 using RGCore.RGPhysics;
 using System;
 
-namespace raygamecsharp.Pong
+namespace MiniAtariArcade.Pong
 {
     class PongBall : GameObject
     {
