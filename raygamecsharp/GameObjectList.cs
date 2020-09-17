@@ -20,10 +20,14 @@ namespace RGCore
             
         };
 
+        /// <summary>
+        /// Contains all the scenes in default state
+        /// </summary>
         public static List<List<GameObject>> scenes = new List<List<GameObject>>
         {
             new List<GameObject>//Main Menu 0
             {
+                new VolumeSlider("Volume", new Vector2(50,700)),
                 new Text("Title",new Vector2(250,100),"Mini Atari\nArcade",80,WHITE),
                 new LoadSceneButton("StartPong",new Vector2(1100,225),"PongButton",2),
                 new SceneButtonScore("StartBreakout",new Vector2(500,650),"BreakoutButton",3,"Breakout"),
@@ -73,7 +77,10 @@ namespace RGCore
 
         };
 
-
+        /// <summary>
+        /// Loads scene and calls all Start() funtions
+        /// </summary>
+        /// <param name="sceneID">the index of the scene in the scenes list</param>
         public static void LoadScene(int sceneID) 
         {
             objects = new List<GameObject>();
@@ -120,15 +127,21 @@ namespace RGCore
             textures.Add("AsteroidBig0", LoadTexture(@"Textures\AsteroidBig0.png"));
             textures.Add("BreakoutButton", LoadTexture(@"Textures\BreakoutButton.png"));
             textures.Add("AsteroidsButton", LoadTexture(@"Textures\AsteroidsButton.png"));
-            
+            textures.Add("Mute", LoadTexture(@"Textures\Mute.png"));
+            textures.Add("Full", LoadTexture(@"Textures\Full.png"));
+
         }
         /// <summary>
         /// Loads all sounds to be used into the sound list.
         /// </summary>
         public static void LoadSounds()
         {
-            //sounds.Add("CoinSound", LoadSound(@"Sounds\CoinSound.wav"));
+            sounds.Add("bangMedium", LoadSound(@"Sounds\bangMedium.wav"));
+            sounds.Add("fire", LoadSound(@"Sounds\fire.wav"));
+            //sounds.Add("thrust", LoadSound(@"Sounds\thrust.wav")); //this sound file is broken aparently
         }
+
+
         /// <summary>
         /// Add a GameObject to object list.
         /// </summary>

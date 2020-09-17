@@ -11,17 +11,18 @@ namespace MiniAtariArcade
 {
     class ScoreSaver
     {
-        public static void LoadScores() 
+        public static void LoadSavedData() 
         {
             FileStream fs = new FileStream("SavedScores.dat", FileMode.OpenOrCreate);
             try
             {
                 BinaryFormatter formatter = new BinaryFormatter();
-                savedScores = (ScoreData)formatter.Deserialize(fs);
+                savedData = (SavedData)formatter.Deserialize(fs);
             }
             catch (SerializationException e)
             {
-                savedScores = new ScoreData();
+                savedData = new SavedData();
+                Console.WriteLine(e.Message + "\nDefault data used.");
             }
             finally
             {
@@ -34,7 +35,7 @@ namespace MiniAtariArcade
             BinaryFormatter formatter = new BinaryFormatter();
             try
             {
-                formatter.Serialize(fs, savedScores);
+                formatter.Serialize(fs, savedData);
             }
             catch (SerializationException e)
             {
@@ -49,12 +50,13 @@ namespace MiniAtariArcade
     }
 
     [Serializable]
-    public class ScoreData 
+    public class SavedData 
     {
         public int BreakoutScore = 0;
         public string BreakoutName = "";
         public int AsteroidsScore = 0;
         public string AsteroidsName = "";
+        public float Volume = 1f;
     }
 
 }

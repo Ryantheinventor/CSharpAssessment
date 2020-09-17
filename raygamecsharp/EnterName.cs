@@ -38,13 +38,13 @@ namespace MiniAtariArcade
             {
                 if (LastGame == "Breakout") 
                 {
-                    savedScores.BreakoutName = playerName;
-                    savedScores.BreakoutScore = LastScore;
+                    savedData.BreakoutName = playerName;
+                    savedData.BreakoutScore = LastScore;
                 }
                 if (LastGame == "Asteroids")
                 {
-                    savedScores.AsteroidsName = playerName;
-                    savedScores.AsteroidsScore = LastScore;
+                    savedData.AsteroidsName = playerName;
+                    savedData.AsteroidsScore = LastScore;
                 }
 
                 LoadScene(0);

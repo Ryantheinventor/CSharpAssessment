@@ -21,12 +21,12 @@ namespace MiniAtariArcade
         public override void Draw()
         {
             base.Draw();
-            if (game == "Asteroids" && savedScores.AsteroidsScore > 0) {
-                DrawText($"{savedScores.AsteroidsName}:{savedScores.AsteroidsScore}",(int)(transform.translation.X-transform.scale.X/2), (int)(transform.translation.Y + transform.scale.Y / 2)+5, 40, WHITE);
+            if (game == "Asteroids" && savedData.AsteroidsScore > 0) {
+                DrawText($"{savedData.AsteroidsName}:{savedData.AsteroidsScore}",(int)(transform.translation.X-transform.scale.X/2), (int)(transform.translation.Y + transform.scale.Y / 2)+5, 40, WHITE);
             }
-            else if (game == "Breakout" && savedScores.BreakoutScore > 0)
+            else if (game == "Breakout" && savedData.BreakoutScore > 0)
             {
-                DrawText($"{savedScores.BreakoutName}:{savedScores.BreakoutScore}", (int)(transform.translation.X - transform.scale.X / 2), (int)(transform.translation.Y + transform.scale.Y / 2) + 5, 40, WHITE);
+                DrawText($"{savedData.BreakoutName}:{savedData.BreakoutScore}", (int)(transform.translation.X - transform.scale.X / 2), (int)(transform.translation.Y + transform.scale.Y / 2) + 5, 40, WHITE);
             }
 
         }

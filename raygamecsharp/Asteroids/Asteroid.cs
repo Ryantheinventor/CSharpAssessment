@@ -101,6 +101,7 @@ namespace MiniAtariArcade.Asteroids
                         newAsteroid.collider.Velocity.Y = MathF.Sin(angleRad) * speed;
                     }
                 }
+                PlaySound(sounds["bangMedium"]);
                 Destroy(this);
                 Destroy(other.gameObject);
             }

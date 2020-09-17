@@ -37,7 +37,7 @@ namespace RGCore
     {
         public static string LastGame = "";
         public static int LastScore = 0;
-        public static ScoreData savedScores;
+        public static SavedData savedData;
         static Vector2 cameraPos = new Vector2(0,0);
         public static bool showDebug1 = false;
         public static bool showDebug2 = false;
@@ -139,13 +139,12 @@ namespace RGCore
             SetTargetFPS(60);
             LoadTextures();
             LoadSounds();
-            LoadScores();
+            LoadSavedData();
+            SetMasterVolume(savedData.Volume);
+
+
+
             LoadScene(0);
-
-
-            
-
-            //Start();
             // Main game loop
             while (!WindowShouldClose())    // Detect window close button or ESC key
             {

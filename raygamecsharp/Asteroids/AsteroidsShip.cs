@@ -77,6 +77,9 @@ namespace MiniAtariArcade.Asteroids
                     collider.Velocity.Y *= maxSpeedPercent;
                 }
                 
+                PlaySound(sounds["thrust"]);
+                
+
             }
             //screen wrap
             if (transform.translation.X > 1650)
@@ -105,7 +108,7 @@ namespace MiniAtariArcade.Asteroids
             if (IsKeyPressed(KeyboardKey.KEY_SPACE) && curWaitTime >= bulletWaitTime) 
             {
                 Bullet newBullet = new Bullet("Bullet",new Vector2(transform.translation.X,transform.translation.Y));
-                
+                PlaySound(sounds["fire"]);
                 NewObject(newBullet);
                 newBullet.collider.Velocity = -pointDirection * bulletSpeed;
                 curWaitTime = 0;
@@ -115,7 +118,7 @@ namespace MiniAtariArcade.Asteroids
             if (life <= 0) 
             {
                 //TODO end the game here
-                if (savedScores.AsteroidsScore < score.score)
+                if (savedData.AsteroidsScore < score.score)
                 {
                     LastScore = score.score;
                     LastGame = "Asteroids";
