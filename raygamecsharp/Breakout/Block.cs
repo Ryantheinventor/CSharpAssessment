@@ -31,6 +31,7 @@ namespace MiniAtariArcade.Breakout
         {
             if (other.gameObject.name == "Ball") 
             {
+                PlaySound(sounds["brickBreak"]);
                 scoreTracker.AddPoints();
                 Destroy(this);
             }

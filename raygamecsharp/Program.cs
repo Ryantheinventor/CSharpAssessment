@@ -134,6 +134,7 @@ namespace RGCore
             const int screenWidth = 1600;
             const int screenHeight = 900;
 
+            
             InitWindow(screenWidth, screenHeight, "Raylib Game C#");
             InitAudioDevice();
             SetTargetFPS(60);

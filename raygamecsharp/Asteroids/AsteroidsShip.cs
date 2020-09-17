@@ -76,8 +76,9 @@ namespace MiniAtariArcade.Asteroids
                     collider.Velocity.X *= maxSpeedPercent;
                     collider.Velocity.Y *= maxSpeedPercent;
                 }
-                
-                PlaySound(sounds["thrust"]);
+
+                if(!IsSoundPlaying(sounds["thrust"]))
+                    PlaySound(sounds["thrust"]);
                 
 
             }

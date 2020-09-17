@@ -75,31 +75,20 @@ namespace MiniAtariArcade.Breakout
                 }
                 
             }
+            if (other.gameObject.name == "Wall")
+            {
+                PlaySound(sounds["pongBounce2"]);
+            }
+            if (other.gameObject.name == "Player")
+            {
+                PlaySound(sounds["pongBounce1"]);
+            }
         }
 
         public override void Draw()
         {
             base.Draw();
             DrawCircle((int)transform.translation.X, (int)transform.translation.Y, transform.scale.X / 2, WHITE);
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
         }
     }
 }

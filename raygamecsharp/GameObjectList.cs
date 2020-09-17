@@ -138,7 +138,10 @@ namespace RGCore
         {
             sounds.Add("bangMedium", LoadSound(@"Sounds\bangMedium.wav"));
             sounds.Add("fire", LoadSound(@"Sounds\fire.wav"));
-            //sounds.Add("thrust", LoadSound(@"Sounds\thrust.wav")); //this sound file is broken aparently
+            sounds.Add("thrust", LoadSound(@"Sounds\thrust.wav"));
+            sounds.Add("pongBounce1", LoadSound(@"Sounds\pongBounce1.wav"));
+            sounds.Add("pongBounce2", LoadSound(@"Sounds\pongBounce2.wav"));
+            sounds.Add("brickBreak", LoadSound(@"Sounds\brickBreak.wav"));
         }
 
 

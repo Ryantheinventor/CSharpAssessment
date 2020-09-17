@@ -2,7 +2,7 @@
 using Raylib_cs;
 using static Raylib_cs.Raylib;
 using static Raylib_cs.Color;
-
+using static RGCore.GameObjectList;
 using System.Numerics;
 using RGCore.RGPhysics;
 using System;
@@ -78,7 +78,17 @@ namespace MiniAtariArcade.Pong
             DrawCircle((int)transform.translation.X, (int)transform.translation.Y, transform.scale.X / 2, WHITE);
         }
 
-        
+        public override void OnCollisionStay(Collider other)
+        {
+            if (other.gameObject.name == "Wall" && !IsSoundPlaying(sounds["pongBounce2"])) 
+            {
+                PlaySound(sounds["pongBounce2"]);
+            }
+            else if ((other.gameObject.name == "Player1" || other.gameObject.name == "Player2") && !IsSoundPlaying(sounds["pongBounce1"]))
+            {
+                PlaySound(sounds["pongBounce1"]);
+            }
+        }
 
     }
 }
