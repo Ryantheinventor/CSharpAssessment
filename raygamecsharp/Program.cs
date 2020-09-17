@@ -142,6 +142,7 @@ namespace RGCore
             LoadSounds();
             LoadSavedData();
             SetMasterVolume(savedData.Volume);
+            HideCursor();
 
 
 
@@ -161,6 +162,11 @@ namespace RGCore
             //--------------------------------------------------------------------------------------
 
             return 0;
+
+
         }
+
     }
+
+
 }

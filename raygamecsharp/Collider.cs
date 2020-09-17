@@ -184,6 +184,7 @@ namespace RGCore.RGPhysics
         {
             Rectangle myRec = new Rectangle(gameObject.transform.translation.X - (scale.X/2), gameObject.transform.translation.Y - (scale.Y / 2), scale.X, scale.Y);
             Rectangle otherRec = new Rectangle(other.gameObject.transform.translation.X - (other.scale.X / 2), other.gameObject.transform.translation.Y - (other.scale.Y / 2), other.scale.X, other.scale.Y);
+            
             if (CheckCollisionRecs(myRec, otherRec)) 
             {
                 thisCheck.Add(other);

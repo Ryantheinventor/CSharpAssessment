@@ -24,6 +24,9 @@ namespace MiniAtariArcade.Asteroids
         float curWaitTime = 0f;
         AsteroidsScore score;
         Vector2 pointDirection = new Vector2();//a vector 1 unit away from and in front of origin 
+
+        bool inThrustAnim = false;
+
         public AsteroidsShip(string name, Vector2 pos, string textureName) : base(name, pos)
         {
             this.textureName = textureName;
@@ -70,17 +73,25 @@ namespace MiniAtariArcade.Asteroids
                 //apply force in poit direction
                 collider.Velocity -= pointDirection * (shipAcceleration * GetFrameTime());
                 float speed = MathF.Abs(MathF.Sqrt(MathF.Pow(collider.Velocity.X, 2) + MathF.Pow(collider.Velocity.Y, 2)));
-                if (speed > shipMaxSpeed) 
+                if (speed > shipMaxSpeed)
                 {
                     float maxSpeedPercent = shipMaxSpeed / speed;
                     collider.Velocity.X *= maxSpeedPercent;
                     collider.Velocity.Y *= maxSpeedPercent;
                 }
 
-                if(!IsSoundPlaying(sounds["thrust"]))
+                if (!IsSoundPlaying(sounds["thrust"]))
                     PlaySound(sounds["thrust"]);
-                
-
+                if (!inThrustAnim)
+                {
+                    SetSprite(textures["ShipThrust"], 2, 0.1f);
+                    inThrustAnim = true;
+                }
+            }
+            else 
+            {
+                SetSprite(textures[textureName], 1, 1);
+                inThrustAnim = false;
             }
             //screen wrap
             if (transform.translation.X > 1650)

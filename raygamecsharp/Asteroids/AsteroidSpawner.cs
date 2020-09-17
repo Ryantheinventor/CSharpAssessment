@@ -11,14 +11,14 @@ namespace MiniAtariArcade.Asteroids
 {
     class AsteroidSpawner : GameObject
     {
-        public int maxAsteroids = 30;
+        public int maxAsteroids = 1000;//30
         //the largest number on asteroid textures (must be one for all sizes)
         public int asteroidVariants = 0;
         public int minAsteroidSpeed = 100;
         public int maxAsteroidSpeed = 200;
         Random random = new Random();
         public bool hasStarted = false;
-        float spawnWaitTime = 5f;
+        float spawnWaitTime = 5f;//5
         float curWaitTime = 0f;
         AsteroidsShip player;
         public AsteroidSpawner(string name, Vector2 pos) : base(name, pos)

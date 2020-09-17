@@ -43,30 +43,28 @@ namespace RGCore.RGPhysics
             //Run collision checks
             if (objects.Count > 1)
             {
-                for (int i = 0; i < objects.Count - 1; i++)
+                for (int i = 0; i < objects.Count - 1; i++)//cycle through all objects
                 {
-                    if (objects[i].collider != null)
+                    if (objects[i].collider != null)//check if the game object has a collider because not all objects have colliders
                     {
-                        for (int j = i + 1; j < objects.Count; j++)
+                        for (int j = i + 1; j < objects.Count; j++)//start at i + 1 because all previous colliders have already been checked
                         {
-                            if (objects[j].collider != null)
+                            if (objects[j].collider != null)//check if the second game object has a collider because not all objects have colliders
                             {
                                 if (objects[i].collider.CollidesWith(objects[j].collider))
                                 {
-                                    collisions.Add(new Collision(objects[j].collider, objects[i].collider, true));
+                                    collisions.Add(new Collision(objects[j].collider, objects[i].collider, true));//collision confimed... add it to the list
                                 }
                             }
                         }
                         objects[i].collider.ChecksForExits(collisions);
                     }
-                    
                 }
             }
             if (objects[objects.Count - 1].collider != null)
             {
                 objects[objects.Count - 1].collider.ChecksForExits(collisions);
             }
-
             //check if kinimatic objects have collided and react acordingly
             foreach (GameObject g in objects)
             {

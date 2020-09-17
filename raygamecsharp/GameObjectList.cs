@@ -32,6 +32,7 @@ namespace RGCore
                 new LoadSceneButton("StartPong",new Vector2(1100,225),"PongButton",2),
                 new SceneButtonScore("StartBreakout",new Vector2(500,650),"BreakoutButton",3,"Breakout"),
                 new SceneButtonScore("StartAsteroids",new Vector2(1100,650),"AsteroidsButton",4,"Asteroids"),
+                new Mouse("Mouse",new Vector2(0,0), "Mouse"),
             },
             new List<GameObject>//Game Over 1
             {
@@ -52,6 +53,7 @@ namespace RGCore
                 new ScoreCounter("Score2",new Vector2(30,30),1),
                 new ScoreCounter("Score1",new Vector2(1510,30),2),
                 new LoadSceneButton("ExitButton",new Vector2(800,75),"Exit",0),
+                new Mouse("Mouse",new Vector2(0,0), "Mouse"),
 
             },
             new List<GameObject>//Breakout 3
@@ -122,6 +124,7 @@ namespace RGCore
             textures.Add("Exit", LoadTexture(@"Textures\Exit.png"));
             textures.Add("PongButton", LoadTexture(@"Textures\PongButton.png"));
             textures.Add("Ship", LoadTexture(@"Textures\Ship.png"));
+            textures.Add("ShipThrust", LoadTexture(@"Textures\ShipThrust.png"));
             textures.Add("AsteroidSml0", LoadTexture(@"Textures\AsteroidSml0.png"));
             textures.Add("AsteroidMed0", LoadTexture(@"Textures\AsteroidMed0.png"));
             textures.Add("AsteroidBig0", LoadTexture(@"Textures\AsteroidBig0.png"));
@@ -129,6 +132,7 @@ namespace RGCore
             textures.Add("AsteroidsButton", LoadTexture(@"Textures\AsteroidsButton.png"));
             textures.Add("Mute", LoadTexture(@"Textures\Mute.png"));
             textures.Add("Full", LoadTexture(@"Textures\Full.png"));
+            textures.Add("Mouse", LoadTexture(@"Textures\Mouse.png"));
 
         }
         /// <summary>
