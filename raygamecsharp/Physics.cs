@@ -12,7 +12,7 @@ namespace RGCore.RGPhysics
     class Physics
     {
         //keeps track of all collisions
-        private static List<Collision> collisions = new List<Collision>();
+        public static List<Collision> collisions = new List<Collision>();
 
         public static float gravity = 19.6f;
         public static void Update() 

@@ -2,6 +2,8 @@
 using Raylib_cs;
 using static Raylib_cs.Raylib;
 using static Raylib_cs.Color;
+using static RGCore.RGPhysics.Physics;
+using static RGCore.Core_basic_window;
 using System.Numerics;
 using MiniAtariArcade.Pong;
 using MiniAtariArcade.Breakout;
@@ -12,6 +14,9 @@ namespace RGCore
 {
     class GameObjectList
     {
+
+        public static int curScene = 0;
+        
         /// <summary>
         /// Will serve as the Hirerachy 
         /// </summary>
@@ -85,6 +90,8 @@ namespace RGCore
         /// <param name="sceneID">the index of the scene in the scenes list</param>
         public static void LoadScene(int sceneID) 
         {
+            killCurUpdateLoop = true;
+            curScene = sceneID;
             objects = new List<GameObject>();
             for (int i = 0; i < scenes[sceneID].Count; i++) 
             {
@@ -92,6 +99,7 @@ namespace RGCore
             }
             Queue = new List<GameObject>();
             Marked = new List<GameObject>();
+            collisions = new List<RGPhysics.Collision>();
             Core_basic_window.Start();
         }
 

@@ -35,6 +35,7 @@ namespace RGCore
 {
     public class Core_basic_window
     {
+        public static bool killCurUpdateLoop = false;//turn to true when a scene is loaded to prevent objects running code when they should be getting unloaded
         public static string LastGame = "";
         public static int LastScore = 0;
         public static SavedData savedData;
@@ -82,21 +83,31 @@ namespace RGCore
             //Run all update functions
             foreach (GameObject g in objects)
             {
-                g.Update();
+                if (!killCurUpdateLoop)
+                {
+                    g.Update();
+                }
             }
 
-            //Physics update
-            Physics.Update();
+            if (!killCurUpdateLoop)
+            {
+                //Physics update
+                Physics.Update();
+            }
 
             //Run all physics update functions
             foreach (GameObject g in objects)
             {
-                g.PhysicsUpdate();
+                if (!killCurUpdateLoop)
+                {
+                    g.PhysicsUpdate();
+                }
             }
 
             //Load queue in main object list
             UpdateObjectList();
 
+            killCurUpdateLoop = false;
         }
 
         public static void Draw() 

@@ -32,7 +32,7 @@ namespace MiniAtariArcade.Asteroids
             base.Start();
             spawner = (AsteroidSpawner)FindByName("Spawner");
             score = (AsteroidsScore)FindByName("Score");
-
+            transform.rotation.Z = random.Next(0, 360);
         }
         public override void PhysicsUpdate()
         {
@@ -94,6 +94,7 @@ namespace MiniAtariArcade.Asteroids
                     {
                         int variant = random.Next(0, spawner.asteroidVariants);
                         Asteroid newAsteroid = new Asteroid("Asteroid", spawnPos, $"Asteroid{textureSize}{variant}", size);
+                        Console.WriteLine($"Asteroid created asteroid durring OnCollisionStay() in scene {curScene}");
                         NewObject(newAsteroid);
                         float speed = random.Next(spawner.minAsteroidSpeed, spawner.maxAsteroidSpeed);
                         float angleRad = (float)random.NextDouble() * 2;

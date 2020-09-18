@@ -3,6 +3,7 @@ using Raylib_cs;
 using static Raylib_cs.Raylib;
 using static Raylib_cs.Color;
 using static RGCore.GameObjectList;
+using static RGCore.Core_basic_window;
 using System.Numerics;
 using RGCore.RGPhysics;
 using System;
@@ -11,14 +12,13 @@ namespace MiniAtariArcade.Asteroids
 {
     class AsteroidSpawner : GameObject
     {
-        public int maxAsteroids = 1000;//30
-        //the largest number on asteroid textures (must be one for all sizes)
-        public int asteroidVariants = 0;
+        public int maxAsteroids = 35;
+        public int asteroidVariants = 1;//the largest number on asteroid textures (must be one for all sizes)
         public int minAsteroidSpeed = 100;
         public int maxAsteroidSpeed = 200;
         Random random = new Random();
         public bool hasStarted = false;
-        float spawnWaitTime = 5f;//5
+        float spawnWaitTime = 0.1f;//5
         float curWaitTime = 0f;
         AsteroidsShip player;
         public AsteroidSpawner(string name, Vector2 pos) : base(name, pos)
@@ -64,7 +64,7 @@ namespace MiniAtariArcade.Asteroids
 
 
                 Asteroid newAsteroid = new Asteroid("Asteroid", spawnPos, $"Asteroid{textureSize}{variant}", intSize);
-
+                Console.WriteLine($"AsteroidSpawner created asteroid durring Update() in scene {curScene}");
                 NewObject(newAsteroid);
 
                 float speed = random.Next(minAsteroidSpeed,maxAsteroidSpeed);
