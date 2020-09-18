@@ -53,6 +53,7 @@ namespace MiniAtariArcade.Breakout
 
         public override void PhysicsUpdate()
         {
+            //keep the ball on the paddle before the game starts
             if (!HasStarted)
             {
                 transform.translation = new Vector3(player.transform.translation.X,player.transform.translation.Y-20,0);
@@ -61,20 +62,21 @@ namespace MiniAtariArcade.Breakout
 
         public override void OnCollisionStay(Collider other)
         {
-            if (other.gameObject.name == "Floor")
+            if (other.gameObject.name == "Floor")//end the game
             {
-                if (savedData.BreakoutScore < score.score)
+                if (savedData.BreakoutScore < score.score)//new high score
                 {
                     LastGame = "Breakout";
                     LastScore = score.score;
                     LoadScene(1);
                 }
-                else 
+                else //no new high score
                 {
                     LoadScene(0);
                 }
                 
             }
+            //play bounce sounds
             if (other.gameObject.name == "Wall")
             {
                 PlaySound(sounds["pongBounce2"]);

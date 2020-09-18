@@ -14,7 +14,6 @@ namespace MiniAtariArcade.Asteroids
         public Bullet(string name, Vector2 pos) : base(name, pos)
         {
             transform.scale = new Vector3(5, 5, 0);
-
         }
 
 
@@ -27,8 +26,10 @@ namespace MiniAtariArcade.Asteroids
 
         public override void PhysicsUpdate()
         {
+            //move
             transform.translation += new Vector3(collider.Velocity, 0) * GetFrameTime();
 
+            //destroy on adge of screen
             if (transform.translation.X > 1650 || transform.translation.X < -50 || transform.translation.Y > 950 || transform.translation.Y < -50)
             {
                 Destroy(this);

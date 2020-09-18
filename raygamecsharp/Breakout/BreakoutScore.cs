@@ -39,6 +39,9 @@ namespace MiniAtariArcade.Breakout
             }
         }
 
+        /// <summary>
+        /// Add points to score with time bonus calculated
+        /// </summary>
         public void AddPoints() 
         {
             score += pointsPerBlock + (int)timeBonus;

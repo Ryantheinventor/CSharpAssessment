@@ -20,6 +20,7 @@ namespace MiniAtariArcade
 
         public override void Draw()
         {
+            //draw score below button
             base.Draw();
             if (game == "Asteroids" && savedData.AsteroidsScore > 0) {
                 DrawText($"{savedData.AsteroidsName}:{savedData.AsteroidsScore}",(int)(transform.translation.X-transform.scale.X/2), (int)(transform.translation.Y + transform.scale.Y / 2)+5, 40, WHITE);

@@ -39,6 +39,7 @@ namespace MiniAtariArcade.Breakout
         public override void Update()
         {
             base.Update();
+            //move
             if (IsKeyDown(KeyboardKey.KEY_A))
             {
                 transform.translation.X -= speed * GetFrameTime();
@@ -48,7 +49,7 @@ namespace MiniAtariArcade.Breakout
                 transform.translation.X += speed * GetFrameTime();
             }
 
-
+            //limit movement
             if (transform.translation.X > 1040)
             {
                 transform.translation.X = 1040;

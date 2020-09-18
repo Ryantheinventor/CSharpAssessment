@@ -21,6 +21,7 @@ namespace MiniAtariArcade.Pong
         {
             if (other.gameObject.name == "Ball")
             {
+                //add score to correct score counter
                 foreach (GameObject g in objects)
                 {
                     if (g.name == "Score1" && player == 1)
@@ -33,9 +34,10 @@ namespace MiniAtariArcade.Pong
                     }
                     if (g.name.StartsWith("Player")) 
                     {
-                        g.transform.translation.Y = 450;
+                        g.transform.translation.Y = 450;//reset both players to center
                     }
                 }
+                //reset pong ball to center
                 ((PongBall)other.gameObject).Reset();
                 
             }

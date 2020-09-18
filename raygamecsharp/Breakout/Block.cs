@@ -29,6 +29,7 @@ namespace MiniAtariArcade.Breakout
 
         public override void OnCollisionStay(Collider other)
         {
+            //break when hit
             if (other.gameObject.name == "Ball") 
             {
                 PlaySound(sounds["brickBreak"]);

@@ -14,9 +14,9 @@ namespace MiniAtariArcade
         public static void LoadSavedData() 
         {
             FileStream fs = new FileStream("SavedScores.dat", FileMode.OpenOrCreate);
+            BinaryFormatter formatter = new BinaryFormatter();
             try
             {
-                BinaryFormatter formatter = new BinaryFormatter();
                 savedData = (SavedData)formatter.Deserialize(fs);
             }
             catch (SerializationException e)

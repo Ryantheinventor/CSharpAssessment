@@ -42,11 +42,12 @@ namespace MiniAtariArcade.Asteroids
             if (curWaitTime > spawnWaitTime && objects.Count - 3 < maxAsteroids && hasStarted) 
             {
                 Vector2 spawnPos = new Vector2(random.Next(0, 1600), random.Next(0, 900));
-                while (spawnPos.X < player.transform.translation.X + 150 && spawnPos.X > player.transform.translation.X - 150) 
+                while (spawnPos.X < player.transform.translation.X + 150 && spawnPos.X > player.transform.translation.X - 150) //keep new asteroids away from the player
                 {
                     spawnPos.X = random.Next(0, 1600);
                 }
-                string textureSize = "sml";
+                //random asteroid size
+                string textureSize = "Sml";
                 int intSize = random.Next(0, 3);
                 switch (intSize)
                 {
@@ -60,16 +61,15 @@ namespace MiniAtariArcade.Asteroids
                         textureSize = "Big";
                         break;
                 }
+                //random asteroid variant
                 int variant = random.Next(0, asteroidVariants);
 
-
+                //create new asteroid
                 Asteroid newAsteroid = new Asteroid("Asteroid", spawnPos, $"Asteroid{textureSize}{variant}", intSize);
-                Console.WriteLine($"AsteroidSpawner created asteroid durring Update() in scene {curScene}");
                 NewObject(newAsteroid);
-
-                float speed = random.Next(minAsteroidSpeed,maxAsteroidSpeed);
-
                 
+                //random velocity
+                float speed = random.Next(minAsteroidSpeed,maxAsteroidSpeed);
                 float angleRad = (float)random.NextDouble() * 2;
                 newAsteroid.collider.Velocity.X = MathF.Cos(angleRad) * speed;
                 newAsteroid.collider.Velocity.Y = MathF.Sin(angleRad) * speed;

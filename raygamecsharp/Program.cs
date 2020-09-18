@@ -43,15 +43,21 @@ namespace RGCore
         public static bool showDebug1 = false;
         public static bool showDebug2 = false;
 
+        /// <summary>
+        /// call all start functions in GameObjects
+        /// </summary>
         public static void Start()
         {
-            //call all start functions in GameObjects
+            
             foreach (GameObject g in objects) 
             {
                 g.Start();
             }
         }
 
+        /// <summary>
+        /// Calls All Updates, calls physics, calls physics updates
+        /// </summary>
         public static void Update() 
         {
             //Debug
@@ -110,6 +116,9 @@ namespace RGCore
             killCurUpdateLoop = false;
         }
 
+        /// <summary>
+        /// Draws all objects
+        /// </summary>
         public static void Draw() 
         {
             ClearBackground(BLACK);

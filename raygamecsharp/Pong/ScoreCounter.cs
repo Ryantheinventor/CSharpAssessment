@@ -20,6 +20,7 @@ namespace MiniAtariArcade.Pong
 
         public override void Draw()
         {
+            //this object only needs to draw the text score is changed via other code
             DrawText($"{score}", (int)transform.translation.X, (int)transform.translation.Y, 50, WHITE);
         }
 

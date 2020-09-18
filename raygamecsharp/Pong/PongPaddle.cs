@@ -29,6 +29,7 @@ namespace MiniAtariArcade.Pong
         public override void Update()
         {
             base.Update();
+            //movement
             if (player == 1)
             {
                 if (IsKeyDown(KeyboardKey.KEY_W))
@@ -52,7 +53,7 @@ namespace MiniAtariArcade.Pong
                 }
             }
 
-
+            //limit movement
             if (transform.translation.Y > 800)
             {
                 transform.translation.Y = 800;

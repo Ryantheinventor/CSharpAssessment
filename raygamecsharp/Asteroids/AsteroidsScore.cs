@@ -26,6 +26,7 @@ namespace MiniAtariArcade.Asteroids
         public override void Draw()
         {
             base.Draw();
+            //this object only draws score is added by the asteroids
             DrawText($"Score:{score}",(int)transform.translation.X, (int)transform.translation.Y,45,WHITE);
         }
 

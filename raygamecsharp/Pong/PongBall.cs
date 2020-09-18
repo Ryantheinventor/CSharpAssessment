@@ -46,6 +46,9 @@ namespace MiniAtariArcade.Pong
             }
         }
 
+        /// <summary>
+        /// Resets the pong ball to the center of the screen
+        /// </summary>
         public void Reset() 
         {
             Random random = new Random();
@@ -80,6 +83,7 @@ namespace MiniAtariArcade.Pong
 
         public override void OnCollisionStay(Collider other)
         {
+            //Play bounce sounds
             if (other.gameObject.name == "Wall" && !IsSoundPlaying(sounds["pongBounce2"])) 
             {
                 PlaySound(sounds["pongBounce2"]);

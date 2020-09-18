@@ -30,7 +30,6 @@ namespace MiniAtariArcade.Asteroids
         public AsteroidsShip(string name, Vector2 pos, string textureName) : base(name, pos)
         {
             this.textureName = textureName;
-            //transform.scale = new Vector3(texture.width, texture.height, 0);
             color = WHITE;
         }
         public override void Start()
@@ -70,7 +69,7 @@ namespace MiniAtariArcade.Asteroids
             UpdatePointDirection();
             if (IsKeyDown(KeyboardKey.KEY_W))
             {
-                //apply force in poit direction
+                //apply force in point direction
                 collider.Velocity -= pointDirection * (shipAcceleration * GetFrameTime());
                 float speed = MathF.Abs(MathF.Sqrt(MathF.Pow(collider.Velocity.X, 2) + MathF.Pow(collider.Velocity.Y, 2)));
                 if (speed > shipMaxSpeed)
@@ -80,8 +79,11 @@ namespace MiniAtariArcade.Asteroids
                     collider.Velocity.Y *= maxSpeedPercent;
                 }
 
+                //play sounds
                 if (!IsSoundPlaying(sounds["thrust"]))
                     PlaySound(sounds["thrust"]);
+
+                //play thurst animation
                 if (!inThrustAnim)
                 {
                     SetSprite(textures["ShipThrust"], 2, 0.1f);

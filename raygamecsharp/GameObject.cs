@@ -19,21 +19,26 @@ namespace RGCore
             transform.translation = new Vector3(pos,0);
         }
 
+        /// <summary>
+        /// Create a copy of the GameObject
+        /// </summary>
+        /// <returns></returns>
         public virtual GameObject DeepClone() 
         {
             GameObject clone = (GameObject) MemberwiseClone();
-            clone.transform = CloneTransform(transform);
+            //clone.transform = CloneTransform(transform);
             return clone;
         }
 
-        public static Transform CloneTransform(Transform t) 
-        {
-            Transform newT = new Transform();
-            newT.translation = t.translation;
-            newT.scale = t.scale;
-            newT.rotation = t.rotation;
-            return newT;
-        }
+        //removed because Transform is a struct (I thought it was a class at first)
+        //public static Transform CloneTransform(Transform t) 
+        //{
+        //    Transform newT = new Transform();
+        //    newT.translation = t.translation;
+        //    newT.scale = t.scale;
+        //    newT.rotation = t.rotation;
+        //    return newT;
+        //}
 
         /// <summary>
         /// Called when the object is created
@@ -62,6 +67,9 @@ namespace RGCore
 
         }
 
+        /// <summary>
+        /// Called to draw the game object on screen
+        /// </summary>
         public virtual void Draw()
         {
 
