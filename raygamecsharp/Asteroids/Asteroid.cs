@@ -65,12 +65,19 @@ namespace MiniAtariArcade.Asteroids
                 {
                     case 0:
                         score.score += 15;
+                        GameObject popUp0 = new PointPopUp("PopUp",new Vector2(transform.translation.X,transform.translation.Y),15, WHITE);
+                        NewObject(popUp0);
                         break;
                     case 1:
                         score.score += 10;
+                        GameObject popUp1 = new PointPopUp("PopUp", new Vector2(transform.translation.X, transform.translation.Y), 10, WHITE);
+                        NewObject(popUp1);
                         break;
+
                     case 2:
                         score.score += 5;
+                        GameObject popUp2 = new PointPopUp("PopUp", new Vector2(transform.translation.X, transform.translation.Y), 5, WHITE);
+                        NewObject(popUp2);
                         break;
                 }
                 if (size > 0)

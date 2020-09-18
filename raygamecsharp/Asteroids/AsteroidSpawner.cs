@@ -18,7 +18,7 @@ namespace MiniAtariArcade.Asteroids
         public int maxAsteroidSpeed = 200;
         Random random = new Random();
         public bool hasStarted = false;
-        float spawnWaitTime = 0.1f;//5
+        float spawnWaitTime = 5f;//5
         float curWaitTime = 0f;
         AsteroidsShip player;
         public AsteroidSpawner(string name, Vector2 pos) : base(name, pos)

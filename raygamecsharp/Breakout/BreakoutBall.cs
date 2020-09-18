@@ -64,10 +64,10 @@ namespace MiniAtariArcade.Breakout
         {
             if (other.gameObject.name == "Floor")//end the game
             {
-                if (savedData.BreakoutScore < score.score)//new high score
+                if (savedData.BreakoutScore < score.realScore)//new high score
                 {
                     LastGame = "Breakout";
-                    LastScore = score.score;
+                    LastScore = score.realScore;
                     LoadScene(1);
                 }
                 else //no new high score

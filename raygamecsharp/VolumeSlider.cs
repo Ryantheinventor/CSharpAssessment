@@ -27,8 +27,7 @@ namespace MiniAtariArcade
         }
 
         public override void Update()
-        {
-
+        { 
             if (IsMouseButtonDown(MouseButton.MOUSE_LEFT_BUTTON) && !preventTracking && !isTracking)
             {
                 Vector2 mousePos = GetMousePosition();

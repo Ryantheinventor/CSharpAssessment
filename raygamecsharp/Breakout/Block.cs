@@ -33,7 +33,10 @@ namespace MiniAtariArcade.Breakout
             if (other.gameObject.name == "Ball") 
             {
                 PlaySound(sounds["brickBreak"]);
-                scoreTracker.AddPoints();
+                
+                GameObject popUp = new PointPopUp("PopUp", new Vector2(transform.translation.X, transform.translation.Y), scoreTracker.AddPoints(), WHITE);
+                NewObject(popUp);
+                ((PointPopUp)popUp).moveUpSpeed = -25;
                 Destroy(this);
             }
             

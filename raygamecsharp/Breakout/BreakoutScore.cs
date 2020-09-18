@@ -6,6 +6,7 @@ using static RGCore.GameObjectList;
 using System.Numerics;
 using RGCore.RGPhysics;
 using System;
+using System.Collections.Generic;
 
 namespace MiniAtariArcade.Breakout
 {
@@ -13,9 +14,9 @@ namespace MiniAtariArcade.Breakout
     {
         float timeBonus = 100f;
         int pointsPerBlock = 50;
-        public int score = 0;
+        public int realScore = 0;
+        public int displayScore = 0;
         BreakoutBall ball;
-
         public BreakoutScore(string name, Vector2 pos) : base(name, pos)
         {
             transform.scale = new Vector3(20, 20, 0);
@@ -42,14 +43,15 @@ namespace MiniAtariArcade.Breakout
         /// <summary>
         /// Add points to score with time bonus calculated
         /// </summary>
-        public void AddPoints() 
+        public int AddPoints() 
         {
-            score += pointsPerBlock + (int)timeBonus;
+            realScore += pointsPerBlock + (int)timeBonus;
+            return pointsPerBlock + (int)timeBonus;
         }
 
         public override void Draw()
         {
-            DrawText($"{score}", (int)transform.translation.X, (int)transform.translation.Y, 50, WHITE);
+            DrawText($"{realScore}", (int)transform.translation.X, (int)transform.translation.Y, 50, WHITE);
         }
     }
 }
