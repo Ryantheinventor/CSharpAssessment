@@ -32,7 +32,7 @@ namespace RGCore
         public override GameObject DeepClone()
         {
             Sprite clone = (Sprite)MemberwiseClone();
-            clone.transform = CloneTransform(transform);
+            //clone.transform = CloneTransform(transform);
             return clone;
         }
 
