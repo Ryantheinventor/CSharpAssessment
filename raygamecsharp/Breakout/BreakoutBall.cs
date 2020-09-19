@@ -12,6 +12,7 @@ namespace MiniAtariArcade.Breakout
 {
     class BreakoutBall : GameObject
     {
+        public float speedMultiplier = 1.01f;
         public bool HasStarted = false;
         public float Speed = 500f;
         BreakoutPaddle player;
@@ -84,6 +85,11 @@ namespace MiniAtariArcade.Breakout
             if (other.gameObject.name == "Player")
             {
                 PlaySound(sounds["pongBounce1"]);
+            }
+            //slowly increase speed
+            if (other.gameObject.name == "Block")
+            {
+                collider.Velocity *= speedMultiplier;
             }
         }
 

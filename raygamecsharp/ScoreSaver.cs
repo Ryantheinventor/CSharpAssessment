@@ -13,7 +13,7 @@ namespace MiniAtariArcade
     {
         public static void LoadSavedData() 
         {
-            FileStream fs = new FileStream("SavedScores.dat", FileMode.OpenOrCreate);
+            FileStream fs = new FileStream(@"SavedScores.dat", FileMode.OpenOrCreate);
             BinaryFormatter formatter = new BinaryFormatter();
             try
             {
@@ -31,7 +31,7 @@ namespace MiniAtariArcade
         }
         public static void SaveScores()
         {
-            FileStream fs = new FileStream("SavedScores.dat", FileMode.OpenOrCreate);
+            FileStream fs = new FileStream(@"SavedScores.dat", FileMode.OpenOrCreate);
             BinaryFormatter formatter = new BinaryFormatter();
             try
             {

@@ -33,10 +33,10 @@ namespace RGCore
             new List<GameObject>//Main Menu 0
             {
                 new VolumeSlider("Volume", new Vector2(50,700)),
-                new Text("Title",new Vector2(250,100),"Mini Atari\nArcade",80,WHITE),
-                new LoadSceneButton("StartPong",new Vector2(1100,225),"PongButton",2),
-                new SceneButtonScore("StartBreakout",new Vector2(500,650),"BreakoutButton",3,"Breakout"),
-                new SceneButtonScore("StartAsteroids",new Vector2(1100,650),"AsteroidsButton",4,"Asteroids"),
+                new Text("Title",new Vector2(250,125),"Mini Atari\nArcade",80,WHITE),
+                new LoadSceneButton("StartPong",new Vector2(1100,250),"PongButton",2),
+                new SceneButtonScore("StartBreakout",new Vector2(500,625),"BreakoutButton",3,"Breakout"),
+                new SceneButtonScore("StartAsteroids",new Vector2(1100,625),"AsteroidsButton",4,"Asteroids"),
                 new Mouse("Mouse",new Vector2(0,0), "Mouse"),
             },
             new List<GameObject>//Game Over 1
@@ -52,9 +52,9 @@ namespace RGCore
                 new BackBoard("WallRight", new Vector2(1600,450),new Vector2(40,900),2),
                 new CollisionTestRectangle("Wall", new Vector2(800,0),new Vector2(1600,40)),
                 new CollisionTestRectangle("Wall", new Vector2(800,900),new Vector2(1600,40)),
-                new PongBall("Ball",new Vector2(800,450)),
                 new PongPaddle("Player1",new Vector2(100,450),1),
                 new PongPaddle("Player2",new Vector2(1500,450),2),
+                new PongBall("Ball",new Vector2(800,450)),
                 new ScoreCounter("Score2",new Vector2(30,30),1),
                 new ScoreCounter("Score1",new Vector2(1510,30),2),
                 new LoadSceneButton("ExitButton",new Vector2(800,75),"Exit",0),

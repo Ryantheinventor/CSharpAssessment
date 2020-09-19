@@ -133,7 +133,6 @@ namespace RGCore.RGPhysics
                                     {
                                         bounce = collision.collider2.Bounce;
                                     }
-
                                     
 
 
