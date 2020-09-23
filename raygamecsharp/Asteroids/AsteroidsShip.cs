@@ -13,6 +13,10 @@ namespace MiniAtariArcade.Asteroids
     class AsteroidsShip : Sprite
     {
         int life = 3;
+        float iFrameTime = 1f;
+        float curIFrameTime = 0f;
+
+
 
         string textureName = "";
         float shipMaxSpeed = 350f;
@@ -21,7 +25,7 @@ namespace MiniAtariArcade.Asteroids
         float bulletSpeed = 600f;
 
         float bulletWaitTime = 0.3f;
-        float curWaitTime = 0f;
+        float curBulletWaitTime = 0f;
         AsteroidsScore score;
         Vector2 pointDirection = new Vector2();//a vector 1 unit away from and in front of origin 
 
@@ -34,6 +38,7 @@ namespace MiniAtariArcade.Asteroids
         }
         public override void Start()
         {
+            curIFrameTime = iFrameTime;
             SetSprite(textures[textureName], 1, 1);
             transform.scale = new Vector3(texture.width, texture.height, 0);
             collider = new RectangleCollider();
@@ -46,6 +51,7 @@ namespace MiniAtariArcade.Asteroids
 
         public override void Update()
         {
+            //rotation
             if (IsKeyDown(KeyboardKey.KEY_A)) 
             {
                 transform.rotation.Z -= rotationSpeed * GetFrameTime();
@@ -54,9 +60,8 @@ namespace MiniAtariArcade.Asteroids
             {
                 transform.rotation.Z += rotationSpeed * GetFrameTime();
             }
-
-            //
-            if (transform.rotation.Z <= -1)
+            //wrap rotation value
+            if (transform.rotation.Z < 0)
             {
                 transform.rotation.Z = 360 + transform.rotation.Z;
             }
@@ -65,7 +70,7 @@ namespace MiniAtariArcade.Asteroids
                 transform.rotation.Z = 0 + (transform.rotation.Z-360);
             }
 
-
+            //acceleration
             UpdatePointDirection();
             if (IsKeyDown(KeyboardKey.KEY_W))
             {
@@ -113,19 +118,26 @@ namespace MiniAtariArcade.Asteroids
                 transform.translation.Y = 930;
             }
 
-            if (curWaitTime < bulletWaitTime)
+            //bullet timer
+            if (curBulletWaitTime < bulletWaitTime)
             {
-                curWaitTime += GetFrameTime();
+                curBulletWaitTime += GetFrameTime();
             }
 
             //fire weapon
-            if (IsKeyPressed(KeyboardKey.KEY_SPACE) && curWaitTime >= bulletWaitTime) 
+            if (IsKeyPressed(KeyboardKey.KEY_SPACE) && curBulletWaitTime >= bulletWaitTime) 
             {
                 Bullet newBullet = new Bullet("Bullet",new Vector2(transform.translation.X,transform.translation.Y));
                 PlaySound(sounds["fire"]);
                 NewObject(newBullet);
                 newBullet.collider.Velocity = -pointDirection * bulletSpeed;
-                curWaitTime = 0;
+                curBulletWaitTime = 0;
+            }
+
+            //I-frame timer
+            if (curIFrameTime < iFrameTime) 
+            {
+                curIFrameTime += GetFrameTime();
             }
 
             //check if still alive
@@ -161,8 +173,9 @@ namespace MiniAtariArcade.Asteroids
 
         public override void OnCollisionStay(Collider other)
         {
-            if (other.gameObject.name == "Asteroid") 
+            if (other.gameObject.name == "Asteroid" && curIFrameTime >= iFrameTime) 
             {
+                curIFrameTime = 0f;
                 life--;
                 Destroy(other.gameObject);
             }
@@ -171,7 +184,16 @@ namespace MiniAtariArcade.Asteroids
 
         public override void Draw()
         {
+            if (curIFrameTime < iFrameTime && (int)(curIFrameTime * 10)%2 == 0)
+            {
+                color = GRAY;
+            }
+            else 
+            {
+                color = WHITE;
+            }
             base.Draw();
+            
             for (int i = 0; i < life; i++) 
             {
                 Rectangle destRec = new Rectangle(200+(40*i), 10, transform.scale.X, transform.scale.Y);

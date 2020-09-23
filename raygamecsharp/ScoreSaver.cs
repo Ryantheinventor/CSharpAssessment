@@ -11,6 +11,7 @@ namespace MiniAtariArcade
 {
     class ScoreSaver
     {
+        //https://docs.microsoft.com/en-us/dotnet/api/system.runtime.serialization.formatters.binary.binaryformatter?view=netcore-3.1
         public static void LoadSavedData() 
         {
             FileStream fs = new FileStream(@"SavedScores.dat", FileMode.OpenOrCreate);
