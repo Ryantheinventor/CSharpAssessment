@@ -3,10 +3,7 @@ using Raylib_cs;
 using static Raylib_cs.Raylib;
 using static Raylib_cs.Color;
 using System.Numerics;
-using RGCore.RGPhysics;
-using static RGCore.GameObjectList;
-using System;
-using System.Collections.Generic;
+
 namespace MiniAtariArcade
 {
     class Text : GameObject

@@ -40,7 +40,8 @@ namespace RGCore.RGPhysics
                     
                 }
             }
-            //Run collision checks
+
+            #region Run collision checks
             if (objects.Count > 1)
             {
                 for (int i = 0; i < objects.Count - 1; i++)//cycle through all objects
@@ -65,6 +66,8 @@ namespace RGCore.RGPhysics
             {
                 objects[objects.Count - 1].collider.ChecksForExits(collisions);
             }
+            #endregion
+
             //check if kinimatic objects have collided and react acordingly
             foreach (GameObject g in objects)
             {
@@ -133,9 +136,9 @@ namespace RGCore.RGPhysics
                                     {
                                         bounce = collision.collider2.Bounce;
                                     }
-                                    
 
 
+                                    #region Physics reactions
                                     if (collision.collider1.IsKinematic && !collision.collider2.IsKinematic)//move collider1 out of collider2
                                     {
                                         switch (direction)
@@ -257,7 +260,7 @@ namespace RGCore.RGPhysics
                                                 break;
                                         }
                                     }
-
+                                    #endregion
                                     //mark the collision as complete so it is not attempted again
                                     collision.finished = true;
                                 } 

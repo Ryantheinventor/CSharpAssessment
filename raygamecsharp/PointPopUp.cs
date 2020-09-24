@@ -4,8 +4,6 @@ using static Raylib_cs.Raylib;
 using static Raylib_cs.Color;
 using static RGCore.GameObjectList;
 using System.Numerics;
-using RGCore.RGPhysics;
-using System;
 
 namespace MiniAtariArcade
 {
@@ -24,8 +22,8 @@ namespace MiniAtariArcade
 
         public override void Update()
         {
-            alpha -= GetFrameTime();
-            if (alpha <= 0) 
+            alpha -= GetFrameTime();//fade away
+            if (alpha <= 0)//destroy once invisible 
             {
                 Destroy(this);
             }

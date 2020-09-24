@@ -33,9 +33,10 @@ namespace RGCore.RGPhysics
         public abstract float Bounce { get; set; }
 
         /// <summary>
-        /// Does the object obay gravity
+        /// Does the object obey gravity
         /// </summary>
         public abstract bool EnableGravity { get; set; }
+
         protected List<Collider> lastCheck = new List<Collider>();
         protected List<Collider> thisCheck = new List<Collider>();
 

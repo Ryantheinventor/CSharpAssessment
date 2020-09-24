@@ -19,17 +19,15 @@
 *
 ********************************************************************************************/
 
-
-using Raylib_cs;
+#define TEST
 using static Raylib_cs.Raylib;
 using static Raylib_cs.Color;
 using static RGCore.GameObjectList;
 using static MiniAtariArcade.ScoreSaver;
-using System.Numerics;
 using RGCore.RGPhysics;
-using System;
 using MiniAtariArcade;
-using System.Collections.Generic;
+
+
 
 namespace RGCore
 {
@@ -39,8 +37,10 @@ namespace RGCore
         public static string LastGame = "";
         public static int LastScore = 0;
         public static SavedData savedData;
+#if TEST
         public static bool showDebug1 = false;
         public static bool showDebug2 = false;
+#endif
 
         /// <summary>
         /// call all start functions in GameObjects
@@ -59,7 +59,7 @@ namespace RGCore
         /// </summary>
         public static void Update() 
         {
-            //Debug
+#if DEBUG
             if (IsKeyPressed(KeyboardKey.KEY_LEFT_BRACKET))
             {
                 showDebug1 = !showDebug1;
@@ -84,7 +84,7 @@ namespace RGCore
             {
                 LoadScene(4);
             }
-
+#endif
             //Run all update functions
             foreach (GameObject g in objects)
             {
@@ -126,7 +126,7 @@ namespace RGCore
             {
                 g.Draw();
             }
-
+#if DEBUG
             //Debug
             if (showDebug1) {
                 DrawRectangle(0, 0, 400, 900, Fade(RED, 0.5f));
@@ -144,6 +144,7 @@ namespace RGCore
                     }
                 }
             }
+#endif
         }
 
         public static int Main()
@@ -153,7 +154,7 @@ namespace RGCore
             const int screenWidth = 1600;
             const int screenHeight = 900;
 
-            
+#region Initialization
             InitWindow(screenWidth, screenHeight, "Raylib Game C#");
             InitAudioDevice();
             SetTargetFPS(60);
@@ -162,10 +163,11 @@ namespace RGCore
             LoadSavedData();
             SetMasterVolume(savedData.Volume);
             HideCursor();
-
-
-
             LoadScene(0);
+#endregion
+
+
+
             // Main game loop
             while (!WindowShouldClose())    // Detect window close button or ESC key
             {
@@ -174,11 +176,11 @@ namespace RGCore
                 Draw();
                 EndDrawing();
             }
+
+#region De-Initialization
             SaveScores();
-            // De-Initialization
-            //--------------------------------------------------------------------------------------
-            CloseWindow();        // Close window and OpenGL context
-            //--------------------------------------------------------------------------------------
+            CloseWindow();// Close window and OpenGL context
+#endregion
 
             return 0;
 

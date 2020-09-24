@@ -5,8 +5,6 @@ using static Raylib_cs.Color;
 using static RGCore.Core_basic_window;
 using static RGCore.GameObjectList;
 using System.Numerics;
-using RGCore.RGPhysics;
-using System;
 
 namespace MiniAtariArcade
 {

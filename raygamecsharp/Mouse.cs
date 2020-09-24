@@ -1,13 +1,7 @@
-﻿using System;
-using System.Collections.Generic;
-using RGCore;
-using Raylib_cs;
+﻿using RGCore;
 using static Raylib_cs.Raylib;
-using static Raylib_cs.Color;
 using static RGCore.GameObjectList;
-using static RGCore.Core_basic_window;
 using System.Numerics;
-using RGCore.RGPhysics;
 
 namespace MiniAtariArcade
 {

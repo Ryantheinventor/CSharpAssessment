@@ -3,11 +3,8 @@ using Raylib_cs;
 using static Raylib_cs.Raylib;
 using static Raylib_cs.Color;
 using System.Numerics;
-using RGCore.RGPhysics;
 using static RGCore.GameObjectList;
 using static RGCore.Core_basic_window;
-using System;
-using System.Collections.Generic;
 
 namespace MiniAtariArcade
 {
@@ -24,16 +21,16 @@ namespace MiniAtariArcade
             base.Start();
         }
 
-        //a-z = 97-122
+        
         public override void Update()
         {
             int key = GetKeyPressed();
-            if (key >= 97 && key <= 122) 
+            if (key >= 97 && key <= 122) //a-z = 97-122
             {
                 string input = "" + (char)key;
                 playerName = (playerName.Substring(1) + input).ToUpper();
-                Console.WriteLine(playerName);
             }
+
             if (IsKeyPressed(KeyboardKey.KEY_ENTER)) 
             {
                 if (LastGame == "Breakout") 
@@ -46,10 +43,8 @@ namespace MiniAtariArcade
                     savedData.AsteroidsName = playerName;
                     savedData.AsteroidsScore = LastScore;
                 }
-
                 LoadScene(0);
             }
-
         }
 
         public override void Draw()

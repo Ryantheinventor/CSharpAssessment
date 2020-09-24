@@ -16,7 +16,7 @@ namespace RGCore
     {
 
         public static int curScene = 0;
-        
+        #region Active Objects
         /// <summary>
         /// Will serve as the Hirerachy 
         /// </summary>
@@ -25,6 +25,18 @@ namespace RGCore
             
         };
 
+        /// <summary>
+        /// GameObjects waiting to be added to main objects list
+        /// </summary>
+        private static List<GameObject> Queue = new List<GameObject>();
+
+        /// <summary>
+        /// GameObjects waiting to be removed from the main objects list
+        /// </summary>
+        private static List<GameObject> Marked = new List<GameObject>();
+        #endregion
+
+        #region Scenes and scene interacton
         /// <summary>
         /// Contains all the scenes in default state
         /// </summary>
@@ -102,8 +114,9 @@ namespace RGCore
             collisions = new List<RGPhysics.Collision>();
             Core_basic_window.Start();
         }
+        #endregion
 
-
+        #region Ready Assets
         /// <summary>
         /// All preloaded textures
         /// </summary>
@@ -113,21 +126,13 @@ namespace RGCore
         /// All preloaded sounds
         /// </summary>
         public static Dictionary<string, Sound> sounds = new Dictionary<string, Sound>();
+        #endregion
 
-        /// <summary>
-        /// GameObjects waiting to be added to main objects list
-        /// </summary>
-        private static List<GameObject> Queue = new List<GameObject>();
-
-        /// <summary>
-        /// GameObjects waiting to be removed from the main objects list
-        /// </summary>
-        private static List<GameObject> Marked = new List<GameObject>();
-
+        #region Load Assets
         /// <summary>
         /// Loads all textures to be used into the texture list.
         /// </summary>
-        public static void LoadTextures() 
+        public static void LoadTextures()
         {
             textures.Add("Exit", LoadTexture(@"Textures\Exit.png"));
             textures.Add("PongButton", LoadTexture(@"Textures\PongButton.png"));
@@ -155,23 +160,14 @@ namespace RGCore
             sounds.Add("pongBounce2", LoadSound(@"Sounds\pongBounce2.wav"));
             sounds.Add("brickBreak", LoadSound(@"Sounds\brickBreak.wav"));
         }
-
-
-        /// <summary>
-        /// Add a GameObject to object list.
-        /// </summary>
-        public static void NewObject(GameObject gameObject) 
-        {  
-            Queue.Add(gameObject);
-            gameObject.Start();
-        }
+        #endregion
 
         /// <summary>
         /// Will check the queue and marked lists for objects that need to be modified in the objects array.
         /// </summary>
-        public static void UpdateObjectList() 
+        public static void UpdateObjectList()
         {
-            foreach (GameObject g in Queue) 
+            foreach (GameObject g in Queue)
             {
                 objects.Add(g);
             }
@@ -181,6 +177,16 @@ namespace RGCore
                 objects.Remove(g);
             }
             Marked = new List<GameObject>();
+        }
+
+        #region Object list interaction
+        /// <summary>
+        /// Add a GameObject to object list.
+        /// </summary>
+        public static void NewObject(GameObject gameObject) 
+        {  
+            Queue.Add(gameObject);
+            gameObject.Start();
         }
 
         /// <summary>
@@ -223,6 +229,6 @@ namespace RGCore
             }
             return null;
         }
-
+        #endregion
     }
 }
