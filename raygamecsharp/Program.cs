@@ -39,7 +39,6 @@ namespace RGCore
         public static string LastGame = "";
         public static int LastScore = 0;
         public static SavedData savedData;
-        static Vector2 cameraPos = new Vector2(0,0);
         public static bool showDebug1 = false;
         public static bool showDebug2 = false;
 

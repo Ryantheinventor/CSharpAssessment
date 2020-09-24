@@ -61,6 +61,7 @@ namespace MiniAtariArcade.Asteroids
         {
             if (other.gameObject.name == "Bullet") 
             {
+                //add score based off size
                 switch (size) 
                 {
                     case 0:
@@ -80,6 +81,7 @@ namespace MiniAtariArcade.Asteroids
                         NewObject(popUp2);
                         break;
                 }
+                //create debris asteroids
                 if (size > 0)
                 {
                     Vector2 spawnPos = new Vector2(transform.translation.X, transform.translation.Y);

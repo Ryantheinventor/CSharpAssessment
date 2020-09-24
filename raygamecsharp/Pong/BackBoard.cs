@@ -9,6 +9,9 @@ using System;
 
 namespace MiniAtariArcade.Pong
 {
+    /// <summary>
+    /// Detects when the pong ball hit and will give score to correct player
+    /// </summary>
     class BackBoard : CollisionTestRectangle
     {
         int player = 1;

@@ -35,7 +35,7 @@ namespace MiniAtariArcade.Asteroids
         public override void Update()
         {
             curWaitTime += GetFrameTime();
-            if (!hasStarted)
+            if (!hasStarted)//wait untill the player has moved
             {
                 hasStarted = (IsKeyDown(KeyboardKey.KEY_W) || IsKeyDown(KeyboardKey.KEY_D) || IsKeyDown(KeyboardKey.KEY_A) || IsKeyDown(KeyboardKey.KEY_SPACE));
             }

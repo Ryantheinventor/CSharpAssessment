@@ -6,6 +6,9 @@ using Raylib_cs;
 
 namespace RGCore.RGPhysics
 {
+    /// <summary>
+    /// Colliders contain physics related data for gameObjects
+    /// </summary>
     abstract class Collider
     {
         /// <summary>
@@ -76,6 +79,9 @@ namespace RGCore.RGPhysics
         public abstract Vector2 GetClosestMidpoint(Vector2 target);
     }
 
+    /// <summary>
+    /// A collider in the shape of a circle
+    /// </summary>
     class CircleCollider : Collider
     {
         public override float Bounce { get; set; } = 0f;
@@ -145,6 +151,9 @@ namespace RGCore.RGPhysics
         }
     }
 
+    /// <summary>
+    /// A collider in the shape of a rectangle
+    /// </summary>
     class RectangleCollider : Collider
     {
         public override float Bounce { get; set; } = 0f;

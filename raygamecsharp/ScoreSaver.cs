@@ -59,5 +59,4 @@ namespace MiniAtariArcade
         public string AsteroidsName = "";
         public float Volume = 1f;
     }
-
 }

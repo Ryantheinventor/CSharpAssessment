@@ -25,9 +25,11 @@ namespace MiniAtariArcade.Breakout
 
         public override void Start()
         {
-            collider = new RectangleCollider();
-            collider.Bounce = 1f;
-            collider.IsKinematic = true;
+            collider = new RectangleCollider
+            {
+                Bounce = 1f,
+                IsKinematic = true
+            };
             ((RectangleCollider)collider).scale = new Vector2(transform.scale.X, transform.scale.Y);
             base.Start();
             player = (BreakoutPaddle)FindByName("Player");

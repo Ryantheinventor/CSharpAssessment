@@ -13,7 +13,7 @@ namespace MiniAtariArcade.Asteroids
     class AsteroidsShip : Sprite
     {
         int life = 3;
-        float iFrameTime = 1f;
+        float iFrameTime = 2f;
         float curIFrameTime = 0f;
 
 
@@ -41,8 +41,10 @@ namespace MiniAtariArcade.Asteroids
             curIFrameTime = iFrameTime;
             SetSprite(textures[textureName], 1, 1);
             transform.scale = new Vector3(texture.width, texture.height, 0);
-            collider = new RectangleCollider();
-            collider.IsKinematic = true;
+            collider = new RectangleCollider
+            {
+                IsKinematic = true
+            };
             ((RectangleCollider)collider).scale = new Vector2(transform.scale.X, transform.scale.Y);
             base.Start();
             score = (AsteroidsScore)FindByName("Score");
@@ -184,6 +186,7 @@ namespace MiniAtariArcade.Asteroids
 
         public override void Draw()
         {
+            //I-frame flash
             if (curIFrameTime < iFrameTime && (int)(curIFrameTime * 10)%2 == 0)
             {
                 color = GRAY;
@@ -193,12 +196,13 @@ namespace MiniAtariArcade.Asteroids
                 color = WHITE;
             }
             base.Draw();
-            
+
+            //draw health
             for (int i = 0; i < life; i++) 
             {
                 Rectangle destRec = new Rectangle(200+(40*i), 10, transform.scale.X, transform.scale.Y);
                 Rectangle sourceRec = new Rectangle(0,0, transform.scale.X, transform.scale.Y);
-                DrawTexturePro(texture, sourceRec, destRec, new Vector2(0, 0), 0, WHITE);
+                DrawTexturePro(textures["Ship"], sourceRec, destRec, new Vector2(0, 0), 0, WHITE);
             }
         }
     }

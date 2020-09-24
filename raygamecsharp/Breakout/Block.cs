@@ -20,8 +20,10 @@ namespace MiniAtariArcade.Breakout
 
         public override void Start()
         {
-            collider = new RectangleCollider();
-            collider.IsStatic = true;
+            collider = new RectangleCollider
+            {
+                IsStatic = true
+            };
             ((RectangleCollider)collider).scale = new Vector2(transform.scale.X, transform.scale.Y);
             base.Start();
             scoreTracker = (BreakoutScore)FindByName("Score");

@@ -8,6 +8,9 @@ using System;
 
 namespace MiniAtariArcade.Pong
 {
+    /// <summary>
+    /// Displays the value of score on the screen
+    /// </summary>
     class ScoreCounter : GameObject
     {
         public int score = 0;

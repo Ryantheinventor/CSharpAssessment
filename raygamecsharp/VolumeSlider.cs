@@ -28,9 +28,11 @@ namespace MiniAtariArcade
 
         public override void Update()
         { 
+            //when the mouse button is pressed check if it should be tracked or ignored
             if (IsMouseButtonDown(MouseButton.MOUSE_LEFT_BUTTON) && !preventTracking && !isTracking)
             {
                 Vector2 mousePos = GetMousePosition();
+                //start tracking if the mouse button is pressed down inside of the volume slider bounds
                 if (mousePos.X > transform.translation.X - 10 && mousePos.X < transform.translation.X + 10
                     && mousePos.Y > transform.translation.Y - 60 && mousePos.Y < transform.translation.Y + 60)
                 {
@@ -38,6 +40,7 @@ namespace MiniAtariArcade
                 }
                 else
                 {
+                    //prevent tracking if the mouse button is pressed down outside of the volume slider bounds
                     if (!(mousePos.X > transform.translation.X - 10 && mousePos.X < transform.translation.X + 10
                         && mousePos.Y > transform.translation.Y - 60 && mousePos.Y < transform.translation.Y + 60))
                     {
@@ -45,16 +48,18 @@ namespace MiniAtariArcade
                     }
                 }
             }
-            else if (!IsMouseButtonDown(MouseButton.MOUSE_LEFT_BUTTON)) 
+            else if (!IsMouseButtonDown(MouseButton.MOUSE_LEFT_BUTTON)) //reset if the mouse button is released
             {
                 isTracking = false;
                 preventTracking = false;
             }
 
+            
             if(isTracking)
             {
                 Vector2 mousePos = GetMousePosition();
-                SliderPos.Y = mousePos.Y;
+                SliderPos.Y = mousePos.Y; //when tracking move the slider Y to mouse Y
+                //clamp slider Y
                 if (SliderPos.Y > transform.translation.Y + 50) 
                 {
                     SliderPos.Y = transform.translation.Y + 50;
@@ -65,6 +70,7 @@ namespace MiniAtariArcade
                 }
             }
 
+            //apply slider Y to volume setting
             int zero = (int)transform.translation.Y + 50;
             savedData.Volume = 0.01f*(zero - SliderPos.Y);
             SetMasterVolume(savedData.Volume);

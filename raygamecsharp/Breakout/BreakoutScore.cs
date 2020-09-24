@@ -10,6 +10,9 @@ using System.Collections.Generic;
 
 namespace MiniAtariArcade.Breakout
 {
+    /// <summary>
+    /// Displays the score for 
+    /// </summary>
     class BreakoutScore : GameObject
     {
         float timeBonus = 100f;

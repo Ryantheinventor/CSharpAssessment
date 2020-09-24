@@ -8,6 +8,9 @@ using System;
 
 namespace MiniAtariArcade.Pong
 {
+    /// <summary>
+    /// A player paddle for pong
+    /// </summary>
     class PongPaddle : GameObject
     {
         int player = 1;
@@ -20,8 +23,10 @@ namespace MiniAtariArcade.Pong
 
         public override void Start()
         {
-            collider = new RectangleCollider();
-            collider.IsStatic = true;
+            collider = new RectangleCollider
+            {
+                IsStatic = true
+            };
             ((RectangleCollider)collider).scale = new Vector2(transform.scale.X, transform.scale.Y);
             base.Start();
         }

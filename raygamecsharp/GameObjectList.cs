@@ -191,6 +191,7 @@ namespace RGCore
             Marked.Add(gameObject);
         }
 
+        //Used for debug screen
         /// <summary>
         /// Get the types and names of all active GameObjects in a string format
         /// </summary>
@@ -206,6 +207,11 @@ namespace RGCore
             return output;
         }
 
+        /// <summary>
+        /// Find an object by name in object list
+        /// </summary>
+        /// <param name="name">Target name(case sensitive)</param>
+        /// <returns>The first object with a matching name</returns>
         public static GameObject FindByName(string name) 
         {
             foreach (GameObject g in objects) 

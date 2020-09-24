@@ -19,12 +19,14 @@ namespace MiniAtariArcade.Breakout
 
         public override void Start()
         {
-            
-            collider = new RectangleCollider();
-            collider.IsStatic = true;
+
+            collider = new RectangleCollider
+            {
+                IsStatic = true
+            };
             ((RectangleCollider)collider).scale = new Vector2(transform.scale.X, transform.scale.Y);
             base.Start();
-            for (int x = 554; x <= 1046; x += 41) 
+            for (int x = 554; x <= 1046; x += 41) //create all blocks
             {
                 for (int y = 116; y <= 200; y += 21)
                 {
