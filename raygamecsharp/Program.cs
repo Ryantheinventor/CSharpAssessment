@@ -18,8 +18,7 @@
 *   Copyright (c) 2013-2016 Ramon Santamaria (@raysan5)
 *
 ********************************************************************************************/
-
-#define TEST
+using Raylib_cs;
 using static Raylib_cs.Raylib;
 using static Raylib_cs.Color;
 using static RGCore.GameObjectList;
@@ -37,7 +36,7 @@ namespace RGCore
         public static string LastGame = "";
         public static int LastScore = 0;
         public static SavedData savedData;
-#if TEST
+#if DEBUG
         public static bool showDebug1 = false;
         public static bool showDebug2 = false;
 #endif
